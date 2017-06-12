@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<math.h>
+int a,b,c,d,e,f,g,h,i,j,k[1000000];
+int main()
+{
+	k[2]=1;
+	for(b=3;b<1000000;b+=2)
+	{
+		c=sqrt(b);
+		for(a=3;a<=c;a+=2)
+		{
+			if(k[a]==1)
+			{
+				if(b%a==0)
+				{
+					break;
+				}
+			}
+		}
+		if(a>c)
+		{
+			k[b]=1;
+		}
+	}
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		printf("%d:\n",a);
+		if(a%2==1)
+		{
+			if(k[a-2]!=1)
+			{
+				printf("NO WAY!\n");
+			}
+			else
+			{
+				printf("2+%d\n",a-2);
+			}
+		}
+		else
+		{
+			if(a==4)
+			{
+				printf("2+2\n");
+				continue;
+			}
+			b=a/2;
+			for(c=3;c<=b;c+=2)
+			{
+				if(k[c]==1)
+				{
+					if(k[a-c]==1)
+					{
+						printf("%d+%d\n",c,a-c);
+						break;
+					}
+				}
+			}
+			if(c>b)
+			{
+				printf("NO WAY!\n");
+			}
+		}
+	}
+	return 0;
+}

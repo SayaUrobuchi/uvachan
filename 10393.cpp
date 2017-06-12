@@ -1,0 +1,121 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct
+{
+	int y;
+	char z[51];
+}abc;
+int a,b,c,d,e,f,g,h,i,j;
+abc k[1000];
+char l[123],m[11][7],n[1000][51],o[10];
+int abcc(const void *p,const void *q)
+{
+	if((*(abc*)p).y==(*(abc*)q).y)
+	{
+		return strcmp((*(abc*)p).z,(*(abc*)q).z);
+	}
+	return (*(abc*)q).y-(*(abc*)p).y;
+}
+int main()
+{
+	for(a=97;a<123;a++)
+	{
+		l[a]=1;
+	}
+	m[1][0]='q';
+	m[1][1]='a';
+	m[1][2]='z';
+	m[1][6]=3;
+	m[2][0]='w';
+	m[2][1]='s';
+	m[2][2]='x';
+	m[2][6]=3;
+	m[3][0]='e';
+	m[3][1]='d';
+	m[3][2]='c';
+	m[3][6]=3;
+	m[4][0]='r';
+	m[4][1]='f';
+	m[4][2]='v';
+	m[4][3]='t';
+	m[4][4]='g';
+	m[4][5]='b';
+	m[4][6]=6;
+	m[5][6]=0;
+	m[6][6]=0;
+	m[7][0]='y';
+	m[7][1]='h';
+	m[7][2]='n';
+	m[7][3]='u';
+	m[7][4]='j';
+	m[7][5]='m';
+	m[7][6]=6;
+	m[8][0]='i';
+	m[8][1]='k';
+	m[8][6]=2;
+	m[9][0]='o';
+	m[9][1]='l';
+	m[9][6]=2;
+	m[10][0]='p';
+	m[10][6]=1;
+	while(scanf("%d%d",&a,&b)==2)
+	{
+		for(c=0;c<a;c++)
+		{
+			scanf("%d",&o[c]);
+			for(e=0;e<m[o[c]][6];e++)
+			{
+				l[m[o[c]][e]]=0;
+			}
+		}
+		for(c=0;c<b;c++)
+		{
+			scanf("%s",k[c].z);
+			k[c].y=strlen(k[c].z);
+		}
+		qsort(k,b,sizeof(abc),abcc);
+		for(c=0,i=0,j=0;c<b;c++)
+		{
+			if(k[c].y<i)
+			{
+				break;
+			}
+			for(d=0;d<k[c].y;d++)
+			{
+				if(!l[k[c].z[d]])
+				{
+					break;
+				}
+			}
+			if(d==k[c].y)
+			{
+				if(j)
+				{
+					if(strcmp(k[c].z,n[j-1]))
+					{
+						strcpy(n[j++],k[c].z);
+					}
+				}
+				else
+				{
+					strcpy(n[j++],k[c].z);
+					i=k[c].y;
+				}
+			}
+		}
+		printf("%d\n",j);
+		for(c=0;c<j;c++)
+		{
+			printf("%s\n",n[c]);
+		}
+		for(c=0;c<a;c++)
+		{
+			for(e=0;e<m[o[c]][6];e++)
+			{
+				l[m[o[c]][e]]=1;
+			}
+		}
+	}
+	return 0;
+}

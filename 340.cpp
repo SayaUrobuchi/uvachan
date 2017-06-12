@@ -1,0 +1,70 @@
+#include<stdio.h>
+int main()
+{
+    int a[1000],b[1000],c,d,e,f,g,h,i,j=0,k;
+    while(scanf("%d",&c)==1)
+    {
+        if(c==0)
+        {
+            break;
+        }
+        for(d=0;d<c;d++)
+        {
+            scanf("%d",&a[d]);
+        }
+        j++;
+        printf("Game %d:\n",j);
+        for(d=0;d>-1;d++)
+        {
+            for(d=0;d<c;d++)
+            {
+                b[d]=0;
+            }
+            for(f=0,h=0,d=0,k=0;d<c;d++)
+            {
+                scanf("%d",&e);
+                k+=e;
+                if(e==a[d])
+                {
+                    f++;
+                    if(b[d]==1)
+                    {
+                        for(g=0,i=0;g<c;g++)
+                        {
+                            if(e==a[g]&&b[g]==0)
+                            {
+                                i=1;
+                                b[g]=1;
+                                break;
+                            }
+                        }
+                        if(i==0)
+                        {
+                            h--;
+                        }
+                    }
+                    b[d]=2;
+                }
+                else
+                {
+                    for(g=0;g<c;g++)
+                    {
+                        if(e==a[g]&&b[g]==0)
+                        {
+                            h++;
+                            b[g]=1;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(k==0)
+            {
+                break;
+            }
+            printf("    (%d,%d)\n",f,h);
+            k=0;
+        }
+    }
+    return 0;
+}

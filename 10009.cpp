@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j;
+	char k[26],x[1025],y[1025], check;
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		if(check) printf("\n");
+		check = 1;
+		scanf("%d%d",&a,&b);
+		for(a;a>0;a--)
+		{
+			scanf("%s%s",&x,&y);
+			k[y[0]-65]=x[0]-65;
+		}
+		for(b;b>0;b--)
+		{
+			scanf("%s%s",&x,&y);
+			d=1;
+			if(y[0]!='R')
+			{
+				c=y[0]-65;
+				while(1)
+				{
+					y[d++]=k[c]+65;
+					if(k[c]+65=='R')
+					{
+						break;
+					}
+					c=k[c];
+				}
+			}
+			if(x[0]=='R')
+			{
+				for(d-=1;d>-1;d--)
+				{
+					printf("%c",y[d]);
+				}
+				printf("\n");
+				continue;
+			}
+			for(a=0;a<d;a++)
+			{
+				if(x[0]==y[a])
+				{
+					for(a;a>-1;a--)
+					{
+						printf("%c",y[a]);
+					}
+					printf("\n");
+					break;
+				}
+			}
+			if(a<d)
+			{
+				continue;
+			}
+			c=x[0]-65;
+			e=1;
+			while(1)
+			{
+				x[e]=k[c]+65;
+				for(a=0;a<d;a++)
+				{
+					if(x[e]==y[a])
+					{
+						x[e]='\0';
+						printf("%s",x);
+						for(a;a>-1;a--)
+						{
+							printf("%c",y[a]);
+						}
+						printf("\n");
+						break;
+					}
+				}
+				if(a<d)
+				{
+					break;
+				}
+				c=k[c];
+				e++;
+			}
+		}
+	}
+	return 0;
+}

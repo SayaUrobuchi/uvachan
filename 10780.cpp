@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[40],l[40];
+	scanf("%d",&h);
+	for(g=1,h++;g<h;g++)
+	{
+		scanf("%d%d",&a,&b);
+		printf("Case %d:\n",g);
+		if(b==1)
+		{
+			printf("Impossible to divide\n");
+			continue;
+		}
+		c=sqrt(a)+1;
+		d=a;
+		e=0;
+		l[e]=0;
+		while(!(d%2))
+		{
+			k[e]=2;
+			l[e]++;
+			d/=2;
+		}
+		if(l[e])
+		{
+			l[++e]=0;
+		}
+		for(f=3;f<c;f+=2)
+		{
+			while(!(d%f))
+			{
+				k[e]=f;
+				l[e]++;
+				d/=f;
+			}
+			if(l[e])
+			{
+				l[++e]=0;
+			}
+		}
+		if(d>1)
+		{
+			k[e]=d;
+			l[e++]=1;
+		}
+		if(k[e-1]>b)
+		{
+			printf("Impossible to divide\n");
+		}
+		else
+		{
+			for(c=0,i=0;c<e;c++)
+			{
+				for(d=k[c],f=0;d<=b;d*=k[c])
+				{
+					f+=b/d;
+				}
+				if(f<l[c])
+				{
+					break;
+				}
+				f/=l[c];
+				if(f<i||!i)
+				{
+					i=f;
+				}
+			}
+			if(c==e)
+			{
+				printf("%d\n",i);
+			}
+			else
+			{
+				printf("Impossible to divide\n");
+			}
+		}
+	}
+	return 0;
+}

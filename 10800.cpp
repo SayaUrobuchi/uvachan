@@ -1,0 +1,85 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f[120],g,h,i,j;
+	char k[120][60],x,y[55];
+	k[0][0]='|';
+	k[119][0]='+';
+	k[119][1]='-';
+	scanf("%d%c",&g,&x);
+	for(h=1;h<=g;h++)
+	{
+		printf("Case #%d:\n",h);
+		for(a=1;a<59;a++)
+		{
+			k[0][a]=32;
+		}
+		k[0][a]='\0';
+		for(a=1;a<119;a++)
+		{
+			strcpy(k[a],k[0]);
+		}
+		i=59;
+		j=59;
+		a=59;
+		b=2;
+		c=0;
+		gets(y);
+		d=strlen(y);
+		for(e=0;e<d;e++)
+		{
+			k[119][b]='-';
+			if(y[e]=='R')
+			{
+				if(c==1)
+				{
+					a--;
+				}
+				k[a][b]='/';
+				b++;
+				f[a]=b;
+				c=1;
+			}
+			else if(y[e]=='C')
+			{
+				if(c==1)
+				{
+					a--;
+				}
+				k[a][b]='_';
+				b++;
+				f[a]=b;
+				c=2;
+			}
+			else
+			{
+				if(c>1)
+				{
+					a++;
+				}
+				k[a][b]='\\';
+				b++;
+				f[a]=b;
+				c=3;
+			}
+			if(a<i)
+			{
+				i=a;
+			}
+			if(a>j)
+			{
+				j=a;
+			}
+		}
+		k[119][b]='-';
+		k[119][b+1]='\0';
+		for(a=i;a<=j;a++)
+		{
+			k[a][f[a]]='\0';
+			printf("%s\n",k[a]);
+		}
+		printf("%s\n\n",k[119]);
+	}
+	return 0;
+}

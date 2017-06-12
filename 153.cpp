@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i[10],j[10]={2,3,5,7,11,13,17,19,23,29},k[26],l[31][10],m;
+	char x[31];
+	for(b=0;b<10;b++)
+	{
+		l[1][b]=0;
+	}
+	for(a=2,c=0;a<31;a++)
+	{
+		for(b=0;b<10;b++)
+		{
+			l[a][b]=l[a-1][b];
+		}
+		if(a==j[c])
+		{
+			l[a][c++]=1;
+			continue;
+		}
+		for(d=0,e=a;d<c;d++)
+		{
+			while(!(e%j[d]))
+			{
+				e/=j[d];
+				l[a][d]++;
+			}
+		}
+	}
+	while(gets(x))
+	{
+		if(strcmp(x,"#")==0)
+		{
+			break;
+		}
+		for(a=0;a<26;a++)
+		{
+			k[a]=0;
+		}
+		for(a=0;a<10;a++)
+		{
+			i[a]=0;
+		}
+		a=strlen(x);
+		for(b=0;b<a;b++)
+		{
+			x[b]-=97;
+			k[x[b]]++;
+		}
+		for(b=0,g=1;b<a;b++)
+		{
+			for(c=0,d=x[b];c<d;c++)
+			{
+				if(k[c])
+				{
+					k[c]--;
+					for(e=0,f=a-b-1;e<10;e++)
+					{
+						i[e]+=l[f][e];
+					}
+					for(e=0,m=0;e<26;e++)
+					{
+						if(k[e])
+						{
+							for(f=0;f<10;f++)
+							{
+								i[f]-=l[k[e]][f];
+							}
+						}
+					}
+					k[c]++;
+					for(e=0,h=1;e<10;e++)
+					{
+						if(i[e])
+						{
+							h*=pow(j[e],i[e]);
+							i[e]=0;
+							m++;
+						}
+					}
+					if(m||c<d)
+					{
+						g+=h;
+					}
+				}
+			}
+			k[d]--;
+		}
+		printf("%10d\n",g);
+	}
+	return 0;
+}

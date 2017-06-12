@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<stdlib.h>
+int a,b,c,d,e,f,g,h,i,j,k[1000],l[1000000],m,n;
+int abcc(const void *p,const void *q)
+{
+	return *(int*)p-*(int*)q;
+}
+int main()
+{
+	m=0;
+	while(scanf("%d",&a)==1)
+	{
+		if(!a)
+		{
+			break;
+		}
+		for(b=0,d=0;b<a;b++)
+		{
+			scanf("%d",&k[b]);
+			for(c=0;c<b;c++)
+			{
+				if(k[c]!=k[b])
+				{
+					l[d++]=k[c]+k[b];
+				}
+			}
+		}
+		printf("Case %d:\n",++m);
+		qsort(l,d,sizeof(int),abcc);
+		scanf("%d",&g);
+		for(g;g>0;g--)
+		{
+			scanf("%d",&n);
+			e=0;
+			f=d-1;
+			while(1)
+			{
+				i=e+f;
+				i/=2;
+				if(l[i]==n)
+				{
+					break;
+				}
+				else if(l[i]>n)
+				{
+					f=i-1;
+					if(e>f)
+					{
+						break;
+					}
+				}
+				else
+				{
+					e=i+1;
+					if(e>f)
+					{
+						break;
+					}
+				}
+			}
+			j=n-l[i];
+			h=i;
+			if(j<0)
+			{
+				j*=-1;
+			}
+			for(e=i+1;e<d;e++)
+			{
+				if(l[e]>l[i])
+				{
+					c=l[e]-n;
+					if(c<j)
+					{
+						j=c;
+						h=e;
+					}
+					break;
+				}
+			}
+			for(e=i-1;e>-1;e--)
+			{
+				if(l[e]<l[i])
+				{
+					c=n-l[e];
+					if(c<j)
+					{
+						j=c;
+						h=e;
+					}
+					break;
+				}
+			}
+			printf("Closest sum to %d is %d.\n",n,l[h]);
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    char z;
+    int a[100][2],b,c=0,d,e=1,f,g,h;
+    while(scanf("%d%c",&b,&z)==2)
+    {
+        if(b==0)
+        {
+            break;
+        }
+        if(c==0)
+        {
+            d=b;
+            c++;
+        }
+        else
+        {
+            for(f=1,c=d;f<b;f++)
+            {
+                c*=d;
+            }
+            d=c;
+            c=0;
+            e*=d;
+            //printf("%d\n",e);
+            if(z==10)
+            {
+                for(d=0;d<100;d++)
+                {
+                    a[d][0]=0;
+                    a[d][1]=0;
+                }
+                b=e-1;
+                //d=b*b/4;
+                //d=(int)(sqrt(d));
+                //printf("%d\n",b);
+                for(e=1,h=b,f=0,d=(int)(sqrt(b));e<d+1;e+=2)
+                {
+                    if(e>b)
+                    {
+                        break;
+                    }
+                    if(e==1)
+                    {
+                        if(b%2==0)
+                        {
+                            a[0][1]++;
+                            a[0][0]=2;
+                            e-=2;
+                            b/=2;
+                            f=1;
+                        }
+                    }
+                    else
+                    {
+                        if(b%e==0)
+                        {
+                            //printf("%d\n",e);
+                            if(a[f][0]==e)
+                            {
+                                a[f][1]++;
+                            }
+                            else
+                            {
+                                if(a[f][0]!=0)
+                                {
+                                    f++;
+                                }
+                                a[f][0]=e;
+                                a[f][1]++;
+                            }
+                            b/=e;
+                            e-=2;
+                        }
+                    }
+                }
+                if(a[f][0]!=0)
+                {
+                    f++;
+                }
+                if(b>1)
+                {
+                    printf("%d %d",b,1);
+                    g=50;
+                }
+                for(d=f;d>0;d--)
+                {
+                    if(a[d-1][0]==0)
+                    {
+                        break;
+                    }
+                    if(d!=f||g==50)
+                    {
+                        printf(" ");
+                    }
+                    printf("%d %d",a[d-1][0],a[d-1][1]);
+                }
+                printf("\n");
+                e=1;
+                c=0;
+                g=0;
+            }
+        }
+    }
+    return 0;
+}

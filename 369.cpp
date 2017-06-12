@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,d,e,f,g,h,i[25],j[101][26],k[25]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
+	long long int c;
+	for(a=1;a<101;a++)
+	{
+		for(b=0;b<25;b++)
+		{
+			j[a][b]=0;
+		}
+	}
+	for(a=1;a<101;a++)
+	{
+		b=(int)(sqrt(a));
+		for(c=0,d=a;k[c]<=b;c++)
+		{
+			if(d%k[c]==0)
+			{
+				for(;;)
+				{
+					d/=k[c];
+					j[a][c]++;
+					if(d%k[c]!=0)
+					{
+						break;
+					}
+				}
+			}
+		}
+		if(d!=1)
+		{
+			for(c=0;c<25;c++)
+			{
+				if(d==k[c])
+				{
+					j[a][c]++;
+					break;
+				}
+			}
+		}
+	}
+	while(scanf("%d %d",&a,&b)==2)
+	{
+		if(a==0&&b==0)
+		{
+			break;
+		}
+		c=a-b;
+		if(c>b)
+		{
+			c++;
+			d=b;
+		}
+		else
+		{
+			d=c;
+			c=b+1;
+		}
+		for(e=0;e<25;e++)
+		{
+			i[e]=0;
+		}
+		for(e=c;e<=a;e++)
+		{
+			for(f=0;f<25;f++)
+			{
+				i[f]+=j[e][f];
+			}
+		}
+		for(e=2;e<=d;e++)
+		{
+			for(f=0;f<25;f++)
+			{
+				i[f]-=j[e][f];
+			}
+		}
+		for(c=1,e=0;e<25;e++)
+		{
+			c*=pow(k[e],i[e]);
+		}
+		printf("%d things taken %d at a time is %lld exactly.\n",a,b,c);
+	}
+	return 0;
+}

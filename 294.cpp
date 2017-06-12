@@ -1,0 +1,79 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h,i,j,k[1000][2];
+    while(scanf("%d",&a)==1)
+    {
+        for(a;a>0;a--)
+        {
+            for(e=0;e<1000;e++)
+                {
+                    /*if(k[e][0]==0)
+                    {
+                        break;
+                    }*/
+                    k[e][0]=0;
+                    //k[e][1]=0;
+                }
+            scanf("%d %d",&b,&c);
+            for(i=0,d=b;d<c+1;d++)
+            {
+                for(e=0,g=0,k[0][1]=0,k[0][0]=0,f=d;e<30;e++)
+                {
+                    if(f%2==0)
+                    {
+                        f/=2;
+                        //printf("%d\n",f);
+                        k[0][0]=2;
+                        k[0][1]++;
+                        //printf("k[0][1]=%d\n",k[0][1]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                for(e=3;e<(int)(sqrt(d))+1;e+=2)
+                {
+                    if(e>f)
+                    {
+                        break;
+                    }
+                    if(f%e==0)
+                    {
+                        if(k[g][0]!=e)
+                        {
+                            g++;
+                            k[g][0]=e;
+                            k[g][1]=0;
+                        }
+                        k[g][1]++;
+                        f/=e;
+                        e-=2;
+                    }
+                }
+                if(f!=1)
+                {
+                    g++;
+                    k[g][0]=f;
+                    k[g][1]=1;
+                }
+                //printf("%d\n",d);
+                for(e=1,f=0;f<g+1;f++)
+                {
+                    //printf("%d %d\n",k[f][0],k[f][1]);
+                    e*=k[f][1]+1;
+                }
+                //printf("\n");
+                if(e>i)
+                {
+                    i=e;
+                    j=d;
+                }
+            }
+            printf("Between %d and %d, %d has a maximum of %d divisors.\n",b,c,j,i);
+        }
+    }
+    return 0;
+}

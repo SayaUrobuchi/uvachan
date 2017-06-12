@@ -1,0 +1,76 @@
+#include<stdio.h>
+int main()
+{
+	int a[102],c,d,e,f,g,h[20],i;
+	char b;
+	scanf("%d",&i);
+	for(i;i>0;i--)
+	{
+		for(d=0;d<20;d++)
+		{
+			h[d+1]=0;
+		}
+		for(d=0;d<101;d++)
+		{
+			a[d+1]=0;
+		}
+		a[0]=1;
+		scanf("%d%c",&c,&b);
+		e=c;
+		h[0]=c;
+		if(b==10)
+		{
+			printf("NO\n");
+		}
+		else
+		{
+			for(d=1;d<20;d++)
+			{
+				scanf("%d%c",&c,&b);
+				e+=c;
+				h[d]=c;
+				if(b==10)
+				{
+					d++;
+					break;
+				}
+			}
+			if(e%2==1)
+			{
+				printf("NO\n");
+			}
+			else
+			{
+				f=e/2;
+				for(d;d>0;d--)
+				{
+					if(h[d-1]>100)
+					{
+						printf("NO\n");
+						break;
+					}
+					for(g=100-h[d-1];g>=0;g--)
+					{
+						if(a[g]==1)
+						{
+							a[g+h[d-1]]=1;
+						}
+					}
+					if(a[e/2]==1)
+					{
+						break;
+					}
+				}
+				if(a[e/2]==1)
+				{
+					printf("YES\n");
+				}
+				else
+				{
+					printf("NO\n");
+				}
+			}
+		}
+	}
+	return 0;
+}

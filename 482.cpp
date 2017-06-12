@@ -1,0 +1,64 @@
+#include<stdio.h>
+int main()
+{
+	char k[2000][101],x;
+	int a,b,c,d,e,f,g,h,i,j[2000];
+	i=100;
+	h=0;
+	while(scanf("%d",&a)==1)
+	{
+		for(a;a>0;a--)
+		{
+			for(b=0;;b++)
+			{
+				scanf("%d%c",&j[b],&x);
+				if(x==10)
+				{
+					break;
+				}
+			}
+			b++;
+			c=0;
+			d=0;
+			while(scanf("%c",&x)==1)
+			{
+				if(x==32)
+				{
+					k[j[c]][i]=d;
+					d=0;
+					c++;
+				}
+				else if(x==10)
+				{
+					k[j[c]][i]=d;
+					break;
+				}
+				else
+				{
+					k[j[c]][d]=x;
+					d++;
+				}
+			}
+			e=k[1][i];
+			if(h==1)
+			{
+				printf("\n");
+			}
+			h=1;
+			for(f=0;f<e;f++)
+			{
+				printf("%c",k[1][f]);
+			}
+			for(d=2;d<=b;d++)
+			{
+				e=k[d][i];
+				printf("\n");
+				for(f=0;f<e;f++)
+				{
+					printf("%c",k[d][f]);
+				}
+			}
+			printf("\n");
+		}
+	}
+}

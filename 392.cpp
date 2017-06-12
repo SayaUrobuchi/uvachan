@@ -1,0 +1,80 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g;
+	g=8;
+	b=0;
+	while(scanf("%d",&a)==1)
+	{
+		if(a!=0)
+		{
+			if(b>0)
+			{
+				if(a<0)
+				{
+					printf(" - ");
+					a*=-1;
+				}
+				else
+				{
+					printf(" + ");
+				}
+				if(a==1&&g==0)
+				{
+					printf("1");
+				}
+				else
+				{
+					if(a!=1)
+					{
+						printf("%d",a);
+					}
+				}
+				if(g>0)
+				{
+					printf("x");
+				}
+				if(g>1)
+				{
+					printf("^%d",g);
+				}
+			}
+			else
+			{
+				b=1;
+				if(a==-1&&g!=0)
+				{
+					printf("-");
+				}
+				else if(a!=1)
+				{
+					printf("%d",a);
+				}
+				else if(a==1&&g==0)
+				{
+					printf("1");
+				}
+				if(g>0)
+				{
+					printf("x");
+				}
+				if(g>1)
+				{
+					printf("^%d",g);
+				}
+			}
+		}
+		g--;
+		if(g==-1)
+		{
+			if(b==0)
+			{
+				printf("0");
+			}
+			printf("\n");
+			g=8;
+			b=0;
+		}
+	}
+	return 0;
+}

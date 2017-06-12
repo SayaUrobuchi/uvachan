@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[101][50],l[1000],x[101];
+	h=0;
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		for(b=0;b<a;b++)
+		{
+			x[b]=0;
+			k[b][0]=1;
+		}
+		scanf("%d",&b);
+		b--;
+		while(scanf("%d%d",&c,&d)==2)
+		{
+			if(c==0&&d==0)
+			{
+				break;
+			}
+			c--;
+			d--;
+			k[c][k[c][0]]=d;
+			k[c][0]++;
+		}
+		l[0]=b;
+		for(c=0,d=1,i=0,j=101;c<d;c++)
+		{
+			f=l[c];
+			for(e=1;e<k[f][0];e++)
+			{
+				if(x[f]>=x[k[f][e]])
+				{
+					x[k[f][e]]=0;
+					l[d++]=k[f][e];
+					x[k[f][e]]=x[f]+1;
+					if(x[k[f][e]]>i)
+					{
+						i=x[k[f][e]];
+						j=k[f][e];
+					}
+					else if(x[k[f][e]]==i)
+					{
+						if(k[f][e]<j)
+						{
+							j=k[f][e];
+						}
+					}
+				}
+			}
+		}
+		printf("Case %d: The longest path from %d has length %d, finishing at %d.\n\n",++h,b+1,i,j+1);
+	}
+	return 0;
+}

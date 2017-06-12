@@ -1,0 +1,75 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,k[101][25],l[25],j[25]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
+	long long i;
+	for(a=0;a<25;a++)
+	{
+		k[1][a]=0;
+	}
+	for(a=2;a<101;a++)
+	{
+		for(b=0;b<25;b++)
+		{
+			k[a][b]=k[a-1][b];
+		}
+		for(b=0,c=a;c!=1;b++)
+		{
+			while(!(c%j[b]))
+			{
+				c/=j[b];
+				k[a][b]++;
+			}
+		}
+	}
+	while(scanf("%d%d",&a,&b)==2)
+	{
+		if(!a)
+		{
+			if(!b)
+			{
+				break;
+			}
+			else
+			{
+				if(b==1)
+				{
+					printf("1\n");
+				}
+				else
+				{
+					printf("0\n");
+				}
+				continue;
+			}
+		}
+		for(c=0;c<25;c++)
+		{
+			l[c]=0;
+			while(!(b%j[c]))
+			{
+				b/=j[c];
+				l[c]++;
+			}
+			if(l[c]>k[a][c])
+			{
+				b=2;
+				break;
+			}
+		}
+		if(b>1)
+		{
+			printf("0\n");
+		}
+		else
+		{
+			i=1;
+			for(b=0;b<25;b++)
+			{
+				i*=k[a][b]-l[b]+1;
+			}
+			printf("%lld\n",i);
+		}
+	}
+	return 0;
+}

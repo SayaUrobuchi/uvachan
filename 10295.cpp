@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char x,j[1000][17],k[100],y[17];
+	int a,b,c,d,e,f,g,h[1000],i[1000],q;
+	while(scanf("%d %d%c",&a,&b,&x)==3)
+	{
+		for(c=0;c<a;c++)
+		{
+			g=0;
+			while(scanf("%c",&x)==1)
+			{
+				if(x==32)
+				{
+					j[c][g]='\0';
+					h[c]=g;
+					scanf("%d%c",&i[c],&x);
+					break;
+				}
+				j[c][g]=x;
+				g++;
+			}
+		}
+		for(d=0;b>0;b--)
+		{
+			while(gets(k))
+			{
+				if(strcmp(k,".")==0)
+				{
+					break;
+				}
+				g=strlen(k);
+				for(c=0,e=0;c<g;c++)
+				{
+					if(k[c]==32)
+					{
+						y[e]='\0';
+						for(q=0;q<a;q++)
+						{
+							if(e==h[q])
+							{
+								if(strcmp(y,j[q])==0)
+								{
+									d+=i[q];
+									break;
+								}
+							}
+						}
+						e=0;
+						continue;
+					}
+					y[e]=k[c];
+					e++;
+				}
+				y[e]='\0';
+				for(q=0;q<a;q++)
+				{
+					if(e==h[q])
+					{
+						if(strcmp(y,j[q])==0)
+						{
+							d+=i[q];
+							break;
+						}
+					}
+				}
+			}
+			printf("%d\n",d);
+			d=0;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j;
+	char k[1000],l[1000],m[1000];
+	while(scanf("%s",k)==1)
+	{
+		a=strlen(k);
+		for(b=0,c=0;b<a;b++)
+		{
+			if(k[b]<65)
+			{
+				k[b]-=48;
+				if(k[b]>c)
+				{
+					c=k[b];
+				}
+			}
+			else
+			{
+				k[b]-=55;
+				if(k[b]>c)
+				{
+					c=k[b];
+				}
+			}
+		}
+		if(!c)
+		{
+			c=1;
+		}
+		for(b=0,d=a-1;b<d;b++,d--)
+		{
+			if(k[b]!=k[d])
+			{
+				break;
+			}
+		}
+		if(b>d-1)
+		{
+			printf("0");
+			for(b=14;b>c;b--)
+			{
+				printf(" 0");
+			}
+			for(b;b>1;b--)
+			{
+				printf(" ?");
+			}
+			printf("\n");
+			continue;
+		}
+		for(b=0,d=a-1;b<d;b++,d--)
+		{
+			e=k[b];
+			k[b]=k[d];
+			k[d]=e;
+		}
+		for(b=15;b>c;b--)
+		{
+			for(d=0,e=a-1;d<a;d++,e--)
+			{
+				l[d]=k[d];
+				m[d]=k[e];
+			}
+			for(i=1,j=a;;i++)
+			{
+				l[j]=0;
+				for(d=0;d<j;d++)
+				{
+					l[d]+=m[d];
+					l[d+1]+=l[d]/b;
+					l[d]%=b;
+				}
+				if(l[j])
+				{
+					j++;
+				}
+				for(d=0,e=j-1;d<e;d++,e--)
+				{
+					if(l[d]!=l[e])
+					{
+						break;
+					}
+				}
+				if(d>e-1)
+				{
+					break;
+				}
+				for(d=0,e=j-1;d<j;d++,e--)
+				{
+					m[d]=l[e];
+				}
+			}
+			if(b!=15)
+			{
+				printf(" ");
+			}
+			printf("%d",i);
+		}
+		for(b;b>1;b--)
+		{
+			printf(" ?");
+		}
+		printf("\n");
+	}
+	return 0;
+}

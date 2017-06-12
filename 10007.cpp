@@ -1,0 +1,54 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j[301],k[301][950];
+int main()
+{
+	k[1][0]=1;
+	j[1]=1;
+	for(a=2;a<301;a++)
+	{
+		for(b=j[a-1],c=0;c<b;c++)
+		{
+			k[a][c]=k[a-1][c];
+		}
+		d=4*a-2;
+		for(c=0,d*=a;c<b;c++)
+		{
+			k[a][c]*=d;
+		}
+		k[a][b]=0;
+		for(c=0;c<b;c++)
+		{
+			k[a][c+1]+=k[a][c]/10;
+			k[a][c]%=10;
+		}
+		while(k[a][c]>0)
+		{
+			k[a][c+1]=k[a][c]/10;
+			k[a][c++]%=10;
+		}
+		for(b=c-1,d=a+1,e=0;b>-1;b--)
+		{
+			e*=10;
+			e+=k[a][b];
+			k[a][b]=e/d;
+			e%=d;
+		}
+		while(k[a][--c]==0)
+		{
+		}
+		j[a]=c+1;
+	}
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		for(b=j[a]-1;b>-1;b--)
+		{
+			printf("%d",k[a][b]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

@@ -1,0 +1,400 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[100][101],z[10100][2],p[101];
+	char x,y[100][101];
+	a=0;
+	b=0;
+	c=0;
+	while(scanf("%c",&x)==1)
+	{
+		if(x==10)
+		{
+			if(c==0)
+			{
+				c=b;
+			}
+			a++;
+			b=0;
+			continue;
+		}
+		if(x==32)
+		{
+			continue;
+		}
+		if(x=='%')
+		{
+			scanf("%c",&x);
+			for(d=0,h=0;d<a;d++)
+			{
+				for(e=0;e<c;e++)
+				{
+					if(y[d][e]==0)
+					{
+						continue;
+					}
+					x=y[d][e];
+					k[d][e]=++h;
+					y[d][e]=0;
+					z[0][0]=d;
+					z[0][1]=e;
+					g=1;
+					for(f=0;f<g;f++)
+					{
+						i=z[f][0];
+						j=z[f][1];
+						if(i>0)
+						{
+							if(j>0)
+							{
+								if(y[i-1][j-1]==x)
+								{
+									k[i-1][j-1]=h;
+									y[i-1][j-1]=0;
+									z[g][0]=i-1;
+									z[g][1]=j-1;
+									g++;
+								}
+							}
+							if(y[i-1][j]==x)
+							{
+								k[i-1][j]=h;
+								y[i-1][j]=0;
+								z[g][0]=i-1;
+								z[g][1]=j;
+								g++;
+							}
+							if(j<c-1)
+							{
+								if(y[i-1][j+1]==x)
+								{
+									k[i-1][j+1]=h;
+									y[i-1][j+1]=0;
+									z[g][0]=i-1;
+									z[g][1]=j+1;
+									g++;
+								}
+							}
+						}
+						if(j>0)
+						{
+							if(y[i][j-1]==x)
+							{
+								k[i][j-1]=h;
+								y[i][j-1]=0;
+								z[g][0]=i;
+								z[g][1]=j-1;
+								g++;
+							}
+						}
+						if(j<c-1)
+						{
+							if(y[i][j+1]==x)
+							{
+								k[i][j+1]=h;
+								y[i][j+1]=0;
+								z[g][0]=i;
+								z[g][1]=j+1;
+								g++;
+							}
+						}
+						if(i<a-1)
+						{
+							if(j>0)
+							{
+								if(y[i+1][j-1]==x)
+								{
+									k[i+1][j-1]=h;
+									y[i+1][j-1]=0;
+									z[g][0]=i+1;
+									z[g][1]=j-1;
+									g++;
+								}
+							}
+							if(y[i+1][j]==x)
+							{
+								k[i+1][j]=h;
+								y[i+1][j]=0;
+								z[g][0]=i+1;
+								z[g][1]=j;
+								g++;
+							}
+							if(j<c-1)
+							{
+								if(y[i+1][j+1]==x)
+								{
+									k[i+1][j+1]=h;
+									y[i+1][j+1]=0;
+									z[g][0]=i+1;
+									z[g][1]=j+1;
+									g++;
+								}
+							}
+						}
+					}
+				}
+			}
+			for(b=0;b<c;b++)
+			{
+				p[b]=1;
+				for(d=0;d<a;d++)
+				{
+					if(k[d][b]>9 && p[b] < 2)
+					{
+						p[b]=2;
+					}
+					if(k[d][b]>99 && p[b] < 3)
+					{
+						p[b]=3;
+					}
+					if(k[d][b]>999 && p[b] < 4)
+					{
+						p[b]=4;
+					}
+					if(k[d][b]>9999 && p[b] < 5)
+					{
+						p[b]=5;
+						break;
+					}
+				}
+			}
+			for(b=0;b<a;b++)
+			{
+				if(p[0]==1)
+				{
+					printf("%d",k[b][0]);
+				}
+				else if(p[0]==2)
+				{
+					printf("%2d",k[b][0]);
+				}
+				else if(p[0] == 3)
+				{
+					printf("%3d",k[b][0]);
+				}
+				else if(p[0] == 4)
+				{
+					printf("%4d", k[b][0]);
+				}
+				else
+				{
+					printf("%5d", k[b][0]);
+				}
+				for(d=1;d<c;d++)
+				{
+					if(p[d]==1)
+					{
+						printf(" %d",k[b][d]);
+					}
+					else if(p[d]==2)
+					{
+						printf(" %2d",k[b][d]);
+					}
+					else if(p[d] == 3)
+					{
+						printf(" %3d",k[b][d]);
+					}
+					else if(p[d] == 4)
+					{
+						printf(" %4d", k[b][d]);
+					}
+					else
+					{
+						printf(" %5d", k[b][d]);
+					}
+				}
+				printf("\n");
+			}
+			printf("%%\n");
+			a=0;
+			b=0;
+			c=0;
+			continue;
+		}
+		y[a][b]=x;
+		b++;
+	}
+	for(d=0,h=0;d<a;d++)
+			{
+				for(e=0;e<c;e++)
+				{
+					if(y[d][e]==0)
+					{
+						continue;
+					}
+					x=y[d][e];
+					k[d][e]=++h;
+					y[d][e]=0;
+					z[0][0]=d;
+					z[0][1]=e;
+					g=1;
+					for(f=0;f<g;f++)
+					{
+						i=z[f][0];
+						j=z[f][1];
+						if(i>0)
+						{
+							if(j>0)
+							{
+								if(y[i-1][j-1]==x)
+								{
+									k[i-1][j-1]=h;
+									y[i-1][j-1]=0;
+									z[g][0]=i-1;
+									z[g][1]=j-1;
+									g++;
+								}
+							}
+							if(y[i-1][j]==x)
+							{
+								k[i-1][j]=h;
+								y[i-1][j]=0;
+								z[g][0]=i-1;
+								z[g][1]=j;
+								g++;
+							}
+							if(j<c-1)
+							{
+								if(y[i-1][j+1]==x)
+								{
+									k[i-1][j+1]=h;
+									y[i-1][j+1]=0;
+									z[g][0]=i-1;
+									z[g][1]=j+1;
+									g++;
+								}
+							}
+						}
+						if(j>0)
+						{
+							if(y[i][j-1]==x)
+							{
+								k[i][j-1]=h;
+								y[i][j-1]=0;
+								z[g][0]=i;
+								z[g][1]=j-1;
+								g++;
+							}
+						}
+						if(j<c-1)
+						{
+							if(y[i][j+1]==x)
+							{
+								k[i][j+1]=h;
+								y[i][j+1]=0;
+								z[g][0]=i;
+								z[g][1]=j+1;
+								g++;
+							}
+						}
+						if(i<a-1)
+						{
+							if(j>0)
+							{
+								if(y[i+1][j-1]==x)
+								{
+									k[i+1][j-1]=h;
+									y[i+1][j-1]=0;
+									z[g][0]=i+1;
+									z[g][1]=j-1;
+									g++;
+								}
+							}
+							if(y[i+1][j]==x)
+							{
+								k[i+1][j]=h;
+								y[i+1][j]=0;
+								z[g][0]=i+1;
+								z[g][1]=j;
+								g++;
+							}
+							if(j<c-1)
+							{
+								if(y[i+1][j+1]==x)
+								{
+									k[i+1][j+1]=h;
+									y[i+1][j+1]=0;
+									z[g][0]=i+1;
+									z[g][1]=j+1;
+									g++;
+								}
+							}
+						}
+					}
+				}
+			}
+			for(b=0;b<c;b++)
+			{
+				p[b] = 1;
+				for(d=0;d<a;d++)
+				{
+					if(k[d][b]>9 && p[b] < 2)
+					{
+						p[b]=2;
+					}
+					if(k[d][b]>99 && p[b] < 3)
+					{
+						p[b]=3;
+					}
+					if(k[d][b]>999 && p[b] < 4)
+					{
+						p[b]=4;
+					}
+					if(k[d][b]>9999 && p[b] < 5)
+					{
+						p[b]=5;
+						break;
+					}
+				}
+			}
+			for(b=0;b<a;b++)
+			{
+				if(p[0]==1)
+				{
+					printf("%d",k[b][0]);
+				}
+				else if(p[0]==2)
+				{
+					printf("%2d",k[b][0]);
+				}
+				else if(p[0] == 3)
+				{
+					printf("%3d",k[b][0]);
+				}
+				else if(p[0] == 4)
+				{
+					printf("%4d", k[b][0]);
+				}
+				else
+				{
+					printf("%5d", k[b][0]);
+				}
+				for(d=1;d<c;d++)
+				{
+					if(p[d]==1)
+					{
+						printf(" %d",k[b][d]);
+					}
+					else if(p[d]==2)
+					{
+						printf(" %2d",k[b][d]);
+					}
+					else if(p[d] == 3)
+					{
+						printf(" %3d",k[b][d]);
+					}
+					else if(p[d] == 4)
+					{
+						printf(" %4d", k[b][d]);
+					}
+					else
+					{
+						printf(" %5d", k[b][d]);
+					}
+				}
+				printf("\n");
+			}
+			printf("%%\n");
+	return 0;
+}

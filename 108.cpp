@@ -1,0 +1,75 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[100][100];
+	while(scanf("%d",&a)==1)
+	{
+		for(b=0;b<a;b++)
+		{
+			for(c=0;c<a;c++)
+			{
+				scanf("%d",&k[b][c]);
+			}
+		}
+		for(b=0,i=0;b<a;b++)
+		{
+			for(c=0;c<a;c++)
+			{
+				if(b>0)
+				{
+					k[b][c]+=k[b-1][c];
+				}
+				if(c>0)
+				{
+					k[b][c]+=k[b][c-1];
+				}
+				if(b>0&&c>0)
+				{
+					k[b][c]-=k[b-1][c-1];
+				}
+				if(k[b][c]>i)
+				{
+					i=k[b][c];
+				}
+				for(d=0;d<=b;d++)
+				{
+					for(e=0;e<=c;e++)
+					{
+						f=k[b][c];
+						if(d>0)
+						{
+							f-=k[d-1][c];
+						}
+						if(e>0)
+						{
+							f-=k[b][e-1];
+						}
+						if(d>0&&e>0)
+						{
+							f+=k[d-1][e-1];
+						}
+						/*if(k[b][c]==13)
+						{
+							printf("%d %d %d\n",d,e,f);
+						}*/
+						if(f>i)
+						{
+							i=f;
+						}
+					}
+				}
+			}
+		}
+		/*printf("\n");
+		for(b=0;b<a;b++)
+		{
+			for(c=0;c<a;c++)
+			{
+				printf("%3d ",k[b][c]);
+			}
+			printf("\n");
+		}*/
+		printf("%d\n",i);
+	}
+	return 0;
+}

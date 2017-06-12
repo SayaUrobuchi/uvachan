@@ -1,0 +1,68 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h,i,j[23][11],k[23][23],l[23][23];
+    h=0;
+    while(scanf("%d%d",&a,&g)==2)
+    {
+        if(!a&&!g)
+        {
+            break;
+        }
+        for(b=0;b<a;b++)
+        {
+            scanf("%s",j[b]);
+            for(c=0;c<a;c++)
+            {
+                k[b][c]=0;
+            }    
+        }    
+        for(g;g>0;g--)
+        {
+            scanf("%d%d%d",&b,&c,&d);
+            k[--b][--c]=d;
+            k[c][b]=d;
+        }    
+        for(b=0;b<a;b++)
+        {
+            for(c=0;c<a;c++)
+            {
+                l[b][c]=k[b][c];
+            }    
+        }    
+        for(i=0;i<a;i++)
+        {
+            for(b=0;b<a;b++)
+            {
+                for(c=0;c<a;c++)
+                {
+                    if(l[b][i]&&l[i][c])
+                    {
+                        if(l[b][i]+l[i][c]<l[b][c]||!l[b][c])
+                        {
+                            l[b][c]=l[b][i]+l[i][c];
+                        }    
+                    }    
+                }    
+            }    
+        }    
+        for(b=0,i=0;b<a;b++)
+        {
+            for(c=0,d=0;c<a;c++)
+            {
+                if(b==c)
+                {
+                    continue;
+                }    
+                d+=l[b][c];
+            }    
+            if(d<i||!i)
+            {
+                i=d;
+                e=b;
+            }    
+        }    
+        printf("Case #%d : %s\n",++h,j[e]);
+    }    
+    return 0;
+}    

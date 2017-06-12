@@ -1,0 +1,169 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h;
+	double i,j,k;
+	char x;
+	c=0;
+	d=0;
+	j=0;
+	while(scanf("%lf%c",&k,&x)==2)
+	{
+		if(x=='*')
+		{
+			if(d==0)
+			{
+				i=k;
+			}
+			else if(d==1)
+			{
+				i*=k;
+			}
+			else
+			{
+				i/=k;
+			}
+			d=1;
+		}
+		else if(x=='/')
+		{
+			if(d==0)
+			{
+				i=k;
+			}
+			else if(d==1)
+			{
+				i*=k;
+			}
+			else
+			{
+				i/=k;
+			}
+			d=2;
+		}
+		else if(x=='+')
+		{
+			if(d==1)
+			{
+				i*=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else if(d==2)
+			{
+				i/=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else
+			{
+				if(c==0)
+				{
+					j+=k;
+				}
+				else
+				{
+					j-=k;
+				}
+			}
+			c=0;
+			d=0;
+		}
+		else if(x=='-')
+		{
+			if(d==1)
+			{
+				i*=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else if(d==2)
+			{
+				i/=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else
+			{
+				if(c==0)
+				{
+					j+=k;
+				}
+				else
+				{
+					j-=k;
+				}
+			}
+			c=1;
+			d=0;
+		}
+		else
+		{
+			if(d==1)
+			{
+				i*=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else if(d==2)
+			{
+				i/=k;
+				if(c==0)
+				{
+					j+=i;
+				}
+				else
+				{
+					j-=i;
+				}
+			}
+			else
+			{
+				if(c==0)
+				{
+					j+=k;
+				}
+				else
+				{
+					j-=k;
+				}
+			}
+			printf("%.3f\n",j);
+			c=0;
+			d=0;
+			j=0;
+		}
+	}
+	return 0;
+}

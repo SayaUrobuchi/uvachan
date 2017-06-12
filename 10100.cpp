@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int a,b,c,d,e,f,g,h,i,y[501][501];
+char j[501][21],k[501][21],x[1001],z[21];
+int main()
+{
+	for(a=0;a<501;a++)
+	{
+		y[0][a]=0;
+	}
+	for(a=1;a<501;a++)
+	{
+		y[a][0]=0;
+	}
+	b=1;
+	h=0;
+	while(gets(x))
+	{
+		d=strlen(x);
+		for(a=0,e=0;a<d;a++)
+		{
+			if(x[a]>64&&x[a]<91)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else if(x[a]>96&&x[a]<123)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else if(x[a]>47&&x[a]<58)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else
+			{
+				if(e>0)
+				{
+					z[e]='\0';
+					strcpy(j[b],z);
+					b++;
+					e=0;
+				}
+			}
+		}
+		if(e>0)
+		{
+			z[e]='\0';
+			strcpy(j[b],z);
+			b++;
+			e=0;
+		}
+		gets(x);
+		c=1;
+		d=strlen(x);
+		for(a=0,e=0;a<d;a++)
+		{
+			if(x[a]>64&&x[a]<91)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else if(x[a]>96&&x[a]<123)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else if(x[a]>47&&x[a]<58)
+			{
+				z[e]=x[a];
+				e++;
+			}
+			else
+			{
+				if(e>0)
+				{
+					z[e]='\0';
+					e=0;
+					strcpy(k[c],z);
+					c++;
+				}
+			}
+		}
+		if(e>0)
+		{
+			z[e]='\0';
+			e=0;
+			strcpy(k[c],z);
+			c++;
+		}
+		if(b>1&&c>1)
+		{
+			for(d=1;d<b;d++)
+			{
+				for(e=1;e<c;e++)
+				{
+					if(strcmp(j[d],k[e])==0)
+					{
+						y[d][e]=y[d-1][e-1]+1;
+					}
+					else
+					{
+						y[d][e]=y[d-1][e];
+						if(y[d][e-1]>y[d][e])
+						{
+							y[d][e]=y[d][e-1];
+						}
+					}
+				}
+			}
+			printf("%2d. Length of longest match: %d\n",++h,y[b-1][c-1]);
+		}
+		else
+		{
+			printf("%2d. Blank!\n",++h);
+		}
+		b=1;
+	}
+	return 0;
+}

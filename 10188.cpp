@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char j[105][105],k[105][105],x,y[105];
+	int a,b,c,d,e,f,g,h,i[110];
+	g=0;
+	while(gets(y))
+	{
+		sscanf(y,"%d",&a);
+		if(a==0)
+		{
+			break;
+		}
+		g++;
+		for(c=0;c<a;c++)
+		{
+			gets(j[c]);
+		}
+		gets(y);
+		sscanf(y,"%d",&b);
+		for(c=0;c<b;c++)
+		{
+			gets(k[c]);
+		}
+		if(a==b)
+		{
+			for(c=0;c<a;c++)
+			{
+				if(strcmp(j[c],k[c])!=0)
+				{
+					break;
+				}
+			}
+			if(c==a)
+			{
+				printf("Run #%d: Accepted\n",g);
+				continue;
+			}
+		}
+		for(c=0,d=0;c<a;c++)
+		{
+			f=strlen(j[c]);
+			for(e=0;e<f;e++)
+			{
+				if(j[c][e]>47&&j[c][e]<58)
+				{
+					i[d]=j[c][e];
+					d++;
+				}
+			}
+		}
+		for(c=0,h=0;c<b;c++)
+		{
+			f=strlen(k[c]);
+			for(e=0;e<f;e++)
+			{
+				if(k[c][e]>47&&k[c][e]<58)
+				{
+					if(h==d)
+					{
+						h++;
+						break;
+					}
+					if(k[c][e]==i[h])
+					{
+						h++;
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			if(e<f)
+			{
+				break;
+			}
+		}
+		if(h==d)
+		{
+			printf("Run #%d: Presentation Error\n",g);
+		}
+		else
+		{
+			printf("Run #%d: Wrong Answer\n",g);
+		}
+	}
+	return 0;
+}

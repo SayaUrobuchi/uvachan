@@ -1,0 +1,110 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j,k[100][100],l[100][100],m[101];
+char n[100];
+int abcc(int p,int q)
+{
+	int w,x;
+	x=0;
+	if(l[p][q])
+	{
+		return l[p][q];
+	}
+	if(p>0)
+	{
+		if(k[p-1][q]<k[p][q])
+		{
+			w=abcc(p-1,q);
+			if(w>x)
+			{
+				x=w;
+			}
+		}
+	}
+	if(p<a-1)
+	{
+		if(k[p+1][q]<k[p][q])
+		{
+			w=abcc(p+1,q);
+			if(w>x)
+			{
+				x=w;
+			}
+		}
+	}
+	if(q>0)
+	{
+		if(k[p][q-1]<k[p][q])
+		{
+			w=abcc(p,q-1);
+			if(w>x)
+			{
+				x=w;
+			}
+		}
+	}
+	if(q<b-1)
+	{
+		if(k[p][q+1]<k[p][q])
+		{
+			w=abcc(p,q+1);
+			if(w>x)
+			{
+				x=w;
+			}
+		}
+	}
+	l[p][q]=x+1;
+	return l[p][q];
+}
+int main()
+{
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		scanf("%s%d%d",&n,&a,&b);
+		for(c=0;c<101;c++)
+		{
+			m[c]=0;
+		}
+		for(c=0,e=0;c<a;c++)
+		{
+			for(d=0;d<b;d++)
+			{
+				scanf("%d",&k[c][d]);
+				l[c][d]=0;
+				m[k[c][d]]=1;
+			}
+		}
+		for(c=1;c<101;c++)
+		{
+			m[c]+=m[c-1];
+		}
+		for(c=0,i=0;c<a;c++)
+		{
+			for(d=0;d<b;d++)
+			{
+				if(!l[c][d])
+				{
+					if(k[c][d]>0)
+					{
+						if(m[k[c][d]-1]<i)
+						{
+							continue;
+						}
+					}
+					else if(m[k[c][d]]<i)
+					{
+						continue;
+					}
+					l[c][d]=abcc(c,d);
+					if(l[c][d]>i)
+					{
+						i=l[c][d];
+					}
+				}
+			}
+		}
+		printf("%s: %d\n",n,i);
+	}
+	return 0;
+}

@@ -1,0 +1,104 @@
+#include<stdio.h>
+int a[50][3],b,c,d,e,f,g,h;
+int abc()
+{
+	for(f=0;f<3;f++)
+	{
+		e=a[d][f];
+		a[d][f]=a[d+1][f];
+		a[d+1][f]=e;
+	}
+	return 0;
+}
+int def(int f,int g,int h)
+{
+	for(f;f>0;f--)
+	{
+		g=g*10+h;
+	}
+	return g;
+}
+int main()
+{
+	while(scanf("%d",&b)==1)
+	{
+		if(b==0)
+		{
+			break;
+		}
+		for(c=0;c<b;c++)
+		{
+			scanf("%d",&a[c][0]);
+			if(a[c][0]==0)
+			{
+				a[c][1]=1;
+				a[c][2]=0;
+			}
+			else
+			{
+				d=a[c][0];
+				for(d,e=0;d>0;d/=10)
+				{
+					if(d<10)
+					{
+						a[c][2]=d;
+					}
+					e++;
+				}
+				a[c][1]=e;
+			}
+		}
+		for(c=1;c<b;c++)
+		{
+			for(d=0;d<b-1;d++)
+			{
+				if(a[d][2]<a[d+1][2])
+				{
+					abc();
+				}
+				else if(a[d][2]==a[d+1][2])
+				{
+					if(a[d][1]>a[d+1][1])
+					{
+						f=def(a[d][1]-a[d+1][1],a[d+1][0],a[d+1][2]);
+						if(f>a[d][0])
+						{
+							for(f=0;f<3;f++)
+							{
+								e=a[d][f];
+								a[d][f]=a[d+1][f];
+								a[d+1][f]=e;
+							}
+						}
+					}
+					else if(a[d][1]<a[d+1][1])
+					{
+						f=def(a[d+1][1]-a[d][1],a[d][0],a[d][2]);
+						if(f<a[d+1][0])
+						{
+							for(f=0;f<3;f++)
+							{
+								e=a[d][f];
+								a[d][f]=a[d+1][f];
+								a[d+1][f]=e;
+							}
+						}
+					}
+					else
+					{
+						if(a[d][0]<a[d+1][0])
+						{
+							abc();
+						}
+					}
+				}
+			}
+		}
+		for(c=0;c<b;c++)
+		{
+			printf("%d",a[c][0]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

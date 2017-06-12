@@ -1,0 +1,98 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j,k[30001];
+int abcc(int x)
+{
+	if(k[x]<1)
+	{
+		return x;
+	}
+	k[x]=abcc(k[x]);
+	return k[x];
+}
+int main()
+{
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		scanf("%d%d",&a,&b);
+		for(c=1;c<=a;c++)
+		{
+			k[c]=0;
+		}
+		for(c=0;c<b;c++)
+		{
+			scanf("%d%d",&d,&e);
+			if(d>e)
+			{
+				f=d;
+				d=e;
+				e=f;
+			}
+			if(k[d]>0)
+			{
+				if(k[d]==k[e])
+				{
+					continue;
+				}
+				f=abcc(k[d]);
+				if(k[e]>0)
+				{
+					g=abcc(k[e]);
+					if(g==f)
+					{
+						continue;
+					}
+					if(f>g)
+					{
+						k[f]=g;
+						k[d]=abcc(k[d]);
+					}
+					else
+					{
+						k[g]=f;
+						k[e]=abcc(k[e]);
+					}
+				}
+				else
+				{
+					k[e]=f;
+				}
+			}
+			else
+			{
+				if(k[e]>0)
+				{
+					f=abcc(k[e]);
+					if(f==d)
+					{
+						continue;
+					}
+					if(f>d)
+					{
+						k[f]=d;
+						k[e]=abcc(k[e]);
+					}
+					else
+					{
+						k[d]=f;
+					}
+				}
+				else
+				{
+					k[e]=d;
+				}
+			}
+		}
+		for(b=1,i=0;b<=a;b++)
+		{
+			c=abcc(b);
+			k[c]--;
+			if(k[c]<i)
+			{
+				i=k[c];
+			}
+		}
+		printf("%d\n",i*-1);
+	}
+	return 0;
+}

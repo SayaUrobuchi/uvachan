@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k;
+	while(scanf("%d",&a)==1)
+	{
+		b=sqrt(a)+1;
+		c=a;
+		d=0;
+		i=1;
+		j=a;
+		while(c%2==0)
+		{
+			c/=2;
+			d++;
+		}
+		if(d>0)
+		{
+			i*=d+1;
+			j/=2;
+			d=0;
+		}
+		for(e=3;e<b&&c>e;e+=2)
+		{
+			while(c%e==0)
+			{
+				c/=e;
+				d++;
+			}
+			if(d>0)
+			{
+				i*=d+1;
+				j/=e;
+				j*=e-1;
+				d=0;
+			}
+		}
+		if(c>1)
+		{
+			i*=2;
+			j/=c;
+			j*=c-1;
+		}
+		printf("%d\n",a-i-j+1);
+	}
+	return 0;
+}

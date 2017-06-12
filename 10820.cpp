@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j[52],k[50001];
+	j[0]=2;
+	j[1]=3;
+	for(a=5,b=2;a<240;a+=2)
+	{
+		for(c=0;c<b;c++)
+		{
+			if(a%j[c]==0)
+			{
+				break;
+			}
+		}
+		if(c==b)
+		{
+			j[b++]=a;
+		}
+	}
+	k[1]=1;
+	k[2]=3;
+	for(a=3;a<50001;a++)
+	{
+		b=sqrt(a)+1;
+		for(c=0,d=a*2,e=a;j[c]<b;c++)
+		{
+			if(a%j[c]==0)
+			{
+				d/=j[c];
+				d*=j[c]-1;
+				while(e%j[c]==0)
+				{
+					e/=j[c];
+				}
+			}
+		}
+		if(e>1)
+		{
+			d/=e;
+			d*=e-1;
+		}
+		k[a]=k[a-1]+d;
+	}
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		printf("%d\n",k[a]);
+	}
+	return 0;
+}

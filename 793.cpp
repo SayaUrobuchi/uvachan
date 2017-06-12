@@ -1,0 +1,128 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j,k[1001];
+int abcc(int y)
+{
+	if(k[y]<1)
+	{
+		return y;
+	}
+	k[y]=abcc(k[y]);
+	return k[y];
+}
+int main()
+{
+	char x, check;
+	scanf("%d",&h);
+	check = 0;
+	for(h;h>0;h--)
+	{
+		if(check) printf("\n");
+		check = 1;
+		scanf("%d%c",&a,&x);
+		for(b=1;b<=a;b++)
+		{
+			k[b]=-1;
+		}
+		i=0;
+		j=0;
+		while(scanf("%c",&x)==1)
+		{
+			if(x==10)
+			{
+				break;
+			}
+			if(x=='c')
+			{
+				scanf("%d%d%c",&d,&e,&x);
+				if(d==e)
+				{
+					continue;
+				}
+				if(d>e)
+				{
+					f=d;
+					d=e;
+					e=f;
+				}
+				if(k[d]>0)
+				{
+					if(k[e]==k[d])
+					{
+						continue;
+					}
+					if(k[e]>0)
+					{
+						f=abcc(k[d]);
+						g=abcc(k[e]);
+						if(g==f)
+						{
+							continue;
+						}
+						if(f>g)
+						{
+							k[f]=g;
+							k[d]=abcc(k[d]);
+						}
+						else
+						{
+							k[g]=f;
+							k[e]=abcc(k[e]);
+						}
+					}
+					else
+					{
+						k[d]=abcc(d);
+						k[e]=k[d];
+					}
+				}
+				else
+				{
+					if(k[e]>0)
+					{
+						f=abcc(k[e]);
+						if(f==d)
+						{
+							continue;
+						}
+						if(f>d)
+						{
+							k[f]=d;
+							k[e]=abcc(k[e]);
+						}
+						else
+						{
+							k[d]=f;
+						}
+					}
+					else
+					{
+						k[e]=d;
+					}
+				}
+			}
+			else if(x=='q')
+			{
+				scanf("%d%d%c",&d,&e,&x);
+				if(d==e)
+				{
+					i++;
+				}
+				else
+				{
+					f=abcc(d);
+					g=abcc(e);
+					if(f==g)
+					{
+						i++;
+					}
+					else
+					{
+						j++;
+					}
+				}
+			}
+		}
+		printf("%d,%d\n",i,j);
+	}
+	return 0;
+}

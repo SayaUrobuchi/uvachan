@@ -1,0 +1,242 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,j,k[8][65],l[8][65],x[8][8];
+long long i;
+int abcc(int w,int y,int t)
+{
+	int m,n,p,q,r,s,u,v,z[50][2];
+	if(d==b)
+	{
+		return 1;
+	}
+	for(p=w,u=0;p<e;p++)
+	{
+		if(t)
+		{
+			v=p%2+1;
+			v%=2;
+		}
+		else
+		{
+			v=p%2;
+		}
+		for(q=v;q<e;q+=2)
+		{
+			if(p==w&&q<y)
+			{
+				continue;
+			}
+			if(x[p][q])
+			{
+				x[p][q]=0;
+				m=0;
+				for(r=p-1,s=q-1;r>-1&&s>-1;r--,s--)
+				{
+					if(x[r][s])
+					{
+						z[m][0]=r;
+						z[m++][1]=s;
+						x[r][s]=0;
+					}
+				}
+				for(r=p+1,s=q-1;r<e&&s>-1;r++,s--)
+				{
+					if(x[r][s])
+					{
+						z[m][0]=r;
+						z[m++][1]=s;
+						x[r][s]=0;
+					}
+				}
+				for(r=p-1,s=q+1;r>-1&&s<e;r--,s++)
+				{
+					if(x[r][s])
+					{
+						z[m][0]=r;
+						z[m++][1]=s;
+						x[r][s]=0;
+					}
+				}
+				for(r=p+1,s=q+1;r<e&&s<e;r++,s++)
+				{
+					if(x[r][s])
+					{
+						z[m][0]=r;
+						z[m++][1]=s;
+						x[r][s]=0;
+					}
+				}
+				d++;
+				u+=abcc(p,q+2,t);
+				d--;
+				for(n=0;n<m;n++)
+				{
+					r=z[n][0];
+					s=z[n][1];
+					x[r][s]=1;
+				}
+				x[p][q]=1;
+			}
+		}
+	}
+	return u;
+}
+int main()
+{
+	for(a=0;a<8;a++)
+	{
+		for(b=0;b<8;b++)
+		{
+			x[a][b]=1;
+		}
+		for(b=0,c=a+1,c*=c;b<c;b++)
+		{
+			k[a][b]=0;
+			l[a][b]=0;
+		}
+	}
+	
+	for(a=1,e=2;a<8;a++,e++)
+	{
+		k[a][0]=1;
+		l[a][0]=1;
+		for(b=1,c=e*e;b<c;b++)
+		{
+			d=0;
+			k[a][b]=abcc(0,0,1);
+			if(!k[a][b])
+			{
+				break;
+			}
+			l[a][b]=abcc(0,0,0);
+		}
+	}
+	while(scanf("%d%d",&a,&b)==2)
+	{
+		if(a==0&&b==0)
+		{
+			break;
+		}
+		if(a==1)
+		{
+			printf("1\n");
+		}
+		else
+		{
+			a--;
+			for(c=0,i=0;c<b;c++)
+			{
+				i+=k[a][c]*l[a][b-c];
+			}
+			i+=k[a][c]*l[a][0];
+			printf("%lld\n",i);
+		}
+	}
+	return 0;
+}
+//-------
+/*#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j,k[8][8];
+int abcc(int r,int s)
+{
+	int l,m,n,p,q,t,x,y,z[50][2];
+	if(j==b)
+	{
+		for(x=r,t=s,l=0;x<a;x++)
+		{
+			for(y=t;y<a;y++)
+			{
+				l+=k[x][y];
+			}
+			t=0;
+		}
+		return l;
+	}
+	l=0;
+	t=s;
+	for(p=r;p<a;p++)
+	{
+		for(q=t;q<a;q++)
+		{
+			if(k[p][q])
+			{
+				m=0;
+				k[p][q]=0;
+				for(x=p-1,y=q-1;x>-1&&y>-1;x--,y--)
+				{
+					if(k[x][y])
+					{
+						k[x][y]=0;
+						z[m][0]=x;
+						z[m++][1]=y;
+					}
+				}
+				for(x=p-1,y=q+1;x>-1&&y<a;x--,y++)
+				{
+					if(k[x][y])
+					{
+						k[x][y]=0;
+						z[m][0]=x;
+						z[m++][1]=y;
+					}
+				}
+				for(x=p+1,y=q-1;x<a&&y>-1;x++,y--)
+				{
+					if(k[x][y])
+					{
+						k[x][y]=0;
+						z[m][0]=x;
+						z[m++][1]=y;
+					}
+				}
+				for(x=p+1,y=q+1;x<a&&y<a;x++,y++)
+				{
+					if(k[x][y])
+					{
+						k[x][y]=0;
+						z[m][0]=x;
+						z[m++][1]=y;
+					}
+				}
+				j++;
+				l+=abcc(p,q+1);
+				j--;
+				k[p][q]=1;
+				for(n=0;n<m;n++)
+				{
+					x=z[n][0];
+					y=z[n][1];
+					k[x][y]=1;
+				}
+			}
+		}
+		t=0;
+	}
+	return l;
+}
+int main()
+{
+	while(scanf("%d%d",&a,&b)==2)
+	{
+		if(a==0&&b==0)
+		{
+			break;
+		}
+		if(b==0)
+		{
+			printf("1\n");
+			continue;
+		}
+		for(c=0;c<a;c++)
+		{
+			for(d=0;d<a;d++)
+			{
+				k[c][d]=1;
+			}
+		}
+		i=0;
+		j=1;
+		i=abcc(0,0);
+		printf("%d\n",i);
+	}
+	return 0;
+}*/

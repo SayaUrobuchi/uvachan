@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    char a[2005],i;
+    int b,c,d,e[26][3],f,g,h,j,k;
+    while(scanf("%d%c",&b,&i)==2)
+    {
+	    for(c=0;c<b;c++)
+    	{
+    	    for(d=0;d<26;d++)
+    	    {
+    	        for(f=0;f<3;f++)
+    	        {
+    	            e[d][f]=0;
+    	        }
+    	    }
+    	    for(d=0,j=0;d<2005;d++)
+    	    {
+    	    	scanf("%c",&a[d]);
+        		if(a[d]==10)
+        		{
+        		    break;
+        		}
+        		if(a[d]>96)
+        		{
+        		    e[a[d]-97][2]++;
+        		}
+        		else if(a[d]>64)
+        		{
+        		    e[a[d]-65][1]++;
+    		    }
+    		    else
+    		    {
+    		        e[a[d]-48][0]++;
+    		    }
+    	    }
+    	    printf("Case %d: ",c+1);
+    	    for(d=0;d<3;d++)
+    	    {
+    	        for(k=0;k<26;k++)
+    	        {
+    	            if(e[k][d]%2!=0)
+        	        {
+        	            f=(int)(sqrt(e[k][d]));
+                		for(g=3,h=0;g<f+1;g+=2)
+                		{
+            		        if(e[k][d]%g==0)
+                			{
+                			    h=1;
+                			    break;
+                			}
+            	    	}
+                		if(h!=1&&e[k][d]!=1)
+                		{
+                		    if(d==2)
+                		    {
+                		        printf("%c",k+97);
+                		        //printf("%d\n",e[k][d]);
+                		    }
+                		    else if(d==1)
+                		    {
+                		        printf("%c",k+65);
+                		        //printf("%d\n",e[k][d]);
+            		        }
+            		        else
+            		        {
+            		            printf("%c",k+48);
+            		            //printf("%d\n",e[k][d]);
+            		        }
+                		    j++;
+                		}
+        	        }
+        	        else if(e[k][d]==2)
+        	        {
+        	            if(d==2)
+                		{
+            		        printf("%c",k+97);
+            		    }
+            		    else if(d==1)
+            		    {
+            		        printf("%c",k+65);
+        		        }
+        		        else
+        		        {
+        		            printf("%c",k+48);
+        		        }
+            		    j++;
+        	        }
+    	        }
+    	    }
+    	    if(j==0)
+    	    {
+        		printf("empty\n");
+    	    }
+    	    else
+    	    {
+        		printf("\n");
+    	    }
+    	}
+    }
+    return 0;
+}

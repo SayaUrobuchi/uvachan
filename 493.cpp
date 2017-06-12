@@ -1,0 +1,127 @@
+#include<stdio.h>
+bool x[642][642],y[642][642];
+int a,b,c,d,e,f,g,h,i,j,k[501000][2];
+int abcc(int x,int y)
+{
+	if(x<0)
+	{
+		x*=-1;
+	}
+	if(y<0)
+	{
+		y*=-1;
+	}
+	while(1)
+	{
+		x%=y;
+		if(x==0)
+		{
+			return y;
+		}
+		if(x==1)
+		{
+			return x;
+		}
+		y%=x;
+		if(y==0)
+		{
+			return x;
+		}
+		if(y==1)
+		{
+			return y;
+		}
+	}
+}
+int main()
+{
+	for(a=0;a<642;a++)
+	{
+		for(b=0;b<642;b++)
+		{
+			x[a][b]=0;
+			y[a][b]=0;
+		}
+	}
+	for(a=1,b=1,c=2,d=0,f=-1;d<500000;c++)
+	{
+		for(e=0;e<c;e++,a+=f)
+		{
+			g=abcc(a,b);
+			if(b<0)
+			{
+				i=a/g*-1;
+				j=b/g*-1;
+			}
+			else
+			{
+				i=a/g;
+				j=b/g;
+			}
+			if(i>0)
+			{
+				if(x[i][j]==0)
+				{
+					x[i][j]=1;
+					k[d][0]=i;
+					k[d][1]=j;
+					d++;
+				}
+			}
+			else
+			{
+				if(y[i*-1][j]==0)
+				{
+					y[i*-1][j]=1;
+					k[d][0]=i;
+					k[d][1]=j;
+					d++;
+				}
+			}
+		}
+		for(e=0;e<c;e++,b+=f)
+		{
+			if(b==0)
+			{
+				continue;
+			}
+			g=abcc(a,b);
+			if(b<0)
+			{
+				i=a/g*-1;
+				j=b/g*-1;
+			}
+			else
+			{
+				i=a/g;
+				j=b/g;
+			}
+			if(i>0)
+			{
+				if(x[i][j]==0)
+				{
+					x[i][j]=1;
+					k[d][0]=i;
+					k[d][1]=j;
+					d++;
+				}
+			}
+			else
+			{
+				if(y[i*-1][j]==0)
+				{
+					y[i*-1][j]=1;
+					k[d][0]=i;
+					k[d][1]=j;
+					d++;
+				}
+			}
+		}
+		f*=-1;
+	}
+	while(scanf("%d",&a)==1)
+	{
+		printf("%d / %d\n",k[a][0],k[a][1]);
+	}
+	return 0;
+}

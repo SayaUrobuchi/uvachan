@@ -1,0 +1,105 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j;
+	char k[201],l[201],m[5];
+	while(scanf("%d",&a)==1)
+	{
+		for(b=0;b<a;b++)
+		{
+			scanf("%s",&m);
+			k[b]=m[0];
+		}
+		for(b=0;b<a;b++)
+		{
+			scanf("%s",&m);
+			l[b]=m[0];
+		}
+		for(b=0;b<5;b++)
+		{
+			m[b]=0;
+		}
+		for(b=0;b<a;b++)
+		{
+			if(k[b]>64)
+			{
+				if(l[b]>64)
+				{
+					if(k[b]!=l[b])
+					{
+						break;
+					}
+				}
+				else
+				{
+					l[b]-=49;
+					if(m[l[b]])
+					{
+						if(m[l[b]]!=k[b])
+						{
+							break;
+						}
+					}
+					else
+					{
+						m[l[b]]=k[b];
+					}
+				}
+			}
+			else
+			{
+				if(l[b]>64)
+				{
+					k[b]-=49;
+					if(m[k[b]])
+					{
+						if(m[k[b]]!=l[b])
+						{
+							break;
+						}
+					}
+					else
+					{
+						m[k[b]]=l[b];
+					}
+				}
+				else
+				{
+					k[b]-=49;
+					l[b]-=49;
+					if(m[k[b]]&&m[l[b]])
+					{
+						if(m[k[b]]!=m[l[b]])
+						{
+							break;
+						}
+					}
+					else if(m[k[b]]&&!m[l[b]])
+					{
+						m[l[b]]=m[k[b]];
+					}
+					else if(!m[k[b]]&&m[l[b]])
+					{
+						m[k[b]]=m[l[b]];
+					}
+				}
+			}
+		}
+		if(b<a)
+		{
+			printf("NO\n");
+		}
+		else
+		{
+			printf("YES\n");
+			for(b=0;b<5;b++)
+			{
+				if(m[b])
+				{
+					printf("%d %c\n",b+1,m[b]);
+				}
+			}
+		}
+	}
+	return 0;
+}

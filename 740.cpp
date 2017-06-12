@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h;
+	char i[35],j[35],k[85],x;
+	gets(i);
+	gets(j);
+	while(scanf("%c",&x)==1)
+	{
+		f=0;
+		gets(k);
+		g=x-48;
+		g*=16;
+		for(b=0,c=8;b<4;b++)
+		{
+			g+=(k[b]-48)*c;
+			c/=2;
+		}
+		if(g!=27)
+		{
+			if(g==31)
+			{
+				f=1;
+			}
+			else
+			{
+				printf("%c",i[g]);
+			}
+		}
+		a=strlen(k);
+		a/=5;
+		c=4;
+		for(b=0;b<a;b++)
+		{
+			for(d=0,e=16,g=0;d<5;d++,c++)
+			{
+				g+=(k[c]-48)*e;
+				e/=2;
+			}
+			if(g==27)
+			{
+				f=0;
+			}
+			else if(g==31)
+			{
+				f=1;
+			}
+			else
+			{
+				if(f==0)
+				{
+					printf("%c",i[g]);
+				}
+				else
+				{
+					printf("%c",j[g]);
+				}
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}

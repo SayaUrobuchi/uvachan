@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k;
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		scanf("%d",&a);
+		if(a==0)
+		{
+			printf("0\n");
+			continue;
+		}
+		b=pow(a*1.0,1.0/3.0+0.000001);
+		//printf("%d\n",b);
+		for(c=b;c>0;c--)
+		{
+			if(a%c==0)
+			{
+				i=c;
+				a/=c;
+				break;
+			}
+		}
+		b=sqrt(a);
+		for(c=b;c>0;c--)
+		{
+			if(a%c==0)
+			{
+				j=c;
+				a/=c;
+				k=a;
+				break;
+			}
+		}
+		if(j<k)
+		{
+			i*=j;
+			b=sqrt(i);
+			for(c=b;c>0;c--)
+			{
+				if(i%c==0)
+				{
+					i/=c;
+					j=c;
+					break;
+				}
+			}
+		}
+		c=i*j+i*k+j*k;
+		c*=2;
+		printf("%d\n",c);
+	}
+	return 0;
+}

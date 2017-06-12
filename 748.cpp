@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[180];
+	char l[10],x;
+	while(scanf("%d%c%s%d",&a,&x,l,&h)==4)
+	{
+		g=a;
+		b=strlen(l);
+		for(c=0,d=b-1;d>-1;d--)
+		{
+			k[c++]=l[d]-48;
+		}
+		if(!g)
+		{
+			k[c++]=0;
+		}
+		for(e=a;e>0;e/=10)
+		{
+			k[c++]=e%10;
+		}
+		for(e=0;e<b;e++)
+		{
+			a*=10;
+			a+=l[e]-48;
+		}
+		b*=h;
+		b--;
+		while(--h)
+		{
+			k[c]=0;
+			for(d=0;d<c;d++)
+			{
+				k[d]*=a;
+			}
+			for(d=0;d<c;d++)
+			{
+				k[d+1]+=k[d]/10;
+				k[d]%=10;
+			}
+			while(k[d])
+			{
+				k[d+1]=k[d]/10;
+				k[d++]%=10;
+			}
+			c=d;
+		}
+		if(g)
+		for(c;c>-1;c--)
+		{
+			if(k[c])
+			{
+				break;
+			}
+		}
+		for(d=0;d<=c;d++)
+		{
+			if(k[d])
+			{
+				break;
+			}
+		}
+		d--;
+		for(c;c>b;c--)
+		{
+			printf("%d",k[c]);
+		}
+		printf(".");
+		if(c<b)
+		{
+			for(b;b>c;b--)
+			{
+				printf("0");
+			}
+		}
+		for(c;c>d;c--)
+		{
+			printf("%d",k[c]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

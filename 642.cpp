@@ -1,0 +1,87 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char k[100][7],x[7],y[100][7],z[7];
+    int a,b,c,d,e,f;
+    a=0;
+    while(gets(k[a]))
+    {
+        if(strcmp(k[a],"XXXXXX")==0)
+        {
+            while(gets(x))
+            {
+                if(strcmp(x,"XXXXXX")==0)
+                {
+                    break;
+                }
+                for(b=0,f=0;b<a;b++)
+                {
+                    if(strlen(x)==strlen(k[b]))
+                    {
+                        for(e=0;e<strlen(k[b]);e++)
+                        {
+                            z[e]=1;
+                        }
+                        for(c=0,d=0;c<strlen(k[b]);c++)
+                        {
+                            for(e=0;e<strlen(k[b]);e++)
+                            {
+                                if(k[b][c]==x[e]&&z[e]==1)
+                                {
+                                    d++;
+                                    z[e]=0;
+                                    break;
+                                }
+                            }
+                            if(d==0)
+                            {
+                                break;
+                            }
+                        }
+                        if(d==strlen(k[b]))
+                        {
+                            strcpy(y[f],k[b]);
+                            //printf("1233 %s\n",k[b]);
+                            f++;
+                        }
+                    }
+                }
+                if(f==0)
+                {
+                    printf("NOT A VALID WORD\n");
+                }
+                else
+                {
+                    for(d=0;d<f-1;d++)
+                    {
+                        for(e=0;e<f-1;e++)
+                        {
+                            for(c=0;c<strlen(k[b]);c++)
+                            {
+                                if(y[e][c]>y[e+1][c])
+                                {
+                                    strcpy(x,y[e]);
+                                    strcpy(y[e],y[e+1]);
+                                    strcpy(y[e+1],x);
+                                    break;
+                                }
+                                else if(y[e][c]<y[e+1][c])
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    for(d=0;d<f;d++)
+                    {
+                        printf("%s\n",y[d]);
+                    }
+                }
+                printf("******\n");
+            }
+            break;
+        }
+        a++;
+    }
+}

@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<string.h>
+char g[51],k[9000][51],x;
+int a,b,c,d,e,f,h,i,j[9000];
+int main()
+{
+	a=0;
+	b=0;
+	c=0;
+	while(scanf("%c",&x)==1)
+	{
+		if(x>64&&x<91)
+		{
+			g[b]=x;
+			b++;
+		}
+		else if(x>96&&x<123)
+		{
+			g[b]=x;
+			b++;
+		}
+		else if(x>47&&x<58)
+		{
+			if(c==0&&x==48)
+			{
+				scanf("%c",&x);
+				break;
+			}
+			c*=10;
+			c+=x-48;
+		}
+		else
+		{
+			if(c>0)
+			{
+				c=a-c;
+				printf("%s",k[c]);
+				if(c!=a-1)
+				{
+					a--;
+					b=j[c];
+					strcpy(g,k[c]);
+					for(c;c<a;c++)
+					{
+						strcpy(k[c],k[c+1]);
+						j[c]=j[c+1];
+					}
+					a++;
+					strcpy(k[c],g);
+					j[c]=b;
+					b=0;
+				}
+				c=0;
+			}
+			else if(b>0)
+			{
+				g[b]='\0';
+				for(c=0;c<a;c++)
+				{
+					if(j[c]==b)
+					{
+						if(strcmp(k[c],g)==0)
+						{
+							b=j[c];
+							a--;
+							for(c;c<a;c++)
+							{
+								strcpy(k[c],k[c+1]);
+								j[c]=j[c+1];
+							}
+							a++;
+							strcpy(k[c],g);
+							j[c]=b;
+							b=0;
+							c=0;
+							break;
+						}
+					}
+				}
+				if(c==a)
+				{
+					strcpy(k[c],g);
+					j[c]=b;
+					c=0;
+					b=0;
+					a++;
+				}
+				printf("%s",g);
+			}
+			printf("%c",x);
+		}
+	}
+	return 0;
+}

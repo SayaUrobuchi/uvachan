@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g[1001],k[1001];
+	char i[1000],j[1000];
+	while(gets(i))
+	{
+		a=strlen(i);
+		if(a==3)
+		{
+			if(i[0]=='E')
+			{
+				if(i[1]=='O')
+				{
+					if(i[2]=='F')
+					{
+						break;
+					}
+				}
+			}
+		}
+		gets(j);
+		b=strlen(j);
+		for(c=0;c<=b;c++)
+		{
+			g[c]=0;
+		}
+		k[0]=0;
+		for(c=1;c<=a;c++)
+		{
+			for(d=1,f=0;d<=b;d++)
+			{
+				if(i[c-1]==j[d-1])
+				{
+					k[d]=g[d-1]+1;
+				}
+				else
+				{
+					k[d]=g[d];
+					if(k[d-1]>k[d])
+					{
+						k[d]=k[d-1];
+					}
+				}
+			}
+			for(d=1;d<=b;d++)
+			{
+				g[d]=k[d];
+			}
+		}
+		printf("%d\n",k[b]);
+	}
+	return 0;
+}

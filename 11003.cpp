@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[1001];
+	while(scanf("%d",&h)==1)
+	{
+		if(!h)
+		{
+			break;
+		}
+		scanf("%d%d",&c,&d);
+		k[0]=d;
+		for(a=0,h--;h>0;h--)
+		{
+			scanf("%d%d",&c,&d);
+			i=k[a]-c;
+			b=a;
+			if(d<i)
+			{
+				i=d;
+			}
+			if(i>-1)
+			{
+				k[++a]=i;
+			}
+			for(b;b>0;b--)
+			{
+				i=k[b-1]-c;
+				if(d<i)
+				{
+					i=d;
+				}
+				if(i>k[b])
+				{
+					k[b]=i;
+				}
+			}
+			if(d>k[0])
+			{
+				k[0]=d;
+			}
+		}
+		printf("%d\n",++a);
+	}
+	return 0;
+}

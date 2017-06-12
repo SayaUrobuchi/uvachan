@@ -1,0 +1,65 @@
+#include<stdio.h>
+int main()
+{
+    int a,c,d,e,f;
+    char g,b[1000];
+    while(scanf("%d",&a)==1)
+    {
+        if(a<0)
+        {
+            break;
+        }
+        if(a==0)
+        {
+            scanf("%c",&g);
+            for(a;a<1000;a++)
+            {
+                scanf("%c",&b[a]);
+                if(b[a]==10)
+                {
+                    break;
+                }
+                else if(b[a]>47&&b[a]<58)
+                {
+                    b[a]-=48;
+                }
+                else
+                {
+                    b[a]-=55;
+                }
+            }
+            for(d=0,c=a;c>0;c--)
+            {
+                e=b[c-1];
+                for(f=a-c;f>0;f--)
+                {
+                    e*=16;
+                }
+                d+=e;
+            }
+            printf("%d\n",d);
+        }
+        else
+        {
+            for(c=0;a>0;a/=16,c++)
+            {
+                b[c]=a%16;
+                a-=a%16;
+                if(b[c]>9)
+                {
+                    b[c]+=55;
+                }
+                else
+                {
+                    b[c]+=48;
+                }
+            }
+            printf("0x");
+            for(c;c>0;c--)
+            {
+                printf("%c",b[c-1]);
+            }
+            printf("\n");
+        }
+    }
+}

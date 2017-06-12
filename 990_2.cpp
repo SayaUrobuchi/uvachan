@@ -1,0 +1,73 @@
+#include<stdio.h>
+int l[340],n[340][30];
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,k[30][2];
+	double j;
+	while(scanf("%d%lf%d",&i,&j,&a)==3)
+	{
+		j=i/j/3;
+		for(b=0,i++;b<j;b++)
+		{
+			l[b]=0;
+			for(c=0;c<a;c++)
+			{
+				n[b][c]=0;
+			}
+		}
+		for(b=0;b<a;b++)
+		{
+			scanf("%d%d",&k[b][0],&k[b][1]);
+			for(c=0;c<j;c++)
+			{
+				if(l[c]||!c)
+				{
+					d=c+k[b][0];
+					if(n[d][b])
+					{
+						continue;
+					}
+					if(d<j)
+					{
+						if(l[c]+k[b][1]>l[d])
+						{
+							l[d]=l[c]+k[b][1];
+							for(e=0;e<b;e++)
+							{
+								n[d][e]=n[c][e];
+							}
+							n[d][b]++;
+						}
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+		}
+		for(b=0,c=0;b<i;b++)
+		{
+			if(l[b]>c)
+			{
+				c=l[b];
+				d=b;
+			}
+		}
+		printf("%d\n",c);
+		for(b=0,c=0;b<a;b++)
+		{
+			c+=n[d][b];
+		}
+		printf("%d\n",c);
+		for(b=0;b<a;b++)
+		{
+			if(n[d][b])
+			{
+				printf("%d %d\n",k[b][0],k[b][1]);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}

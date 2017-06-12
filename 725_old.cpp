@@ -1,0 +1,101 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h[10],i[10],j,k,y;
+int abcc()
+{
+	int x;
+	for(x=0;x<10;x++)
+	{
+		if(h[x]==0)
+		{
+			h[x]=1;
+			c*=10;
+			c+=x;
+			if(b==4)
+			{
+				e=c*a;
+				if(e>99999)
+				{
+					d=1;
+				}
+				else
+				{
+					for(f=0,g=e;f<5;f++)
+					{
+						j=g%10;
+						if(i[j]==0&&h[j]==0)
+						{
+							i[j]=1;
+						}
+						else
+						{
+							break;
+						}
+						g/=10;
+					}
+					if(f==5)
+					{
+						if(e<10000)
+						{
+							printf("0");
+						}
+						printf("%d / ",e);
+						if(c<10000)
+						{
+							printf("0");
+						}
+						printf("%d = %d\n",c,a);
+						k=1;
+					}
+					for(f=0;f<10;f++)
+					{
+						i[f]=0;
+					}
+				}
+			}
+			else
+			{
+				b++;
+				abcc();
+				b--;
+			}
+			c-=x;
+			c/=10;
+			h[x]=0;
+		}
+		if(d==1)
+		{
+			break;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		b=0;
+		for(c=0;c<10;c++)
+		{
+			h[c]=0;
+			i[c]=0;
+		}
+		c=0;
+		d=0;
+		k=0;
+		if(y==1)
+		{
+			printf("\n");
+		}
+		y=1;
+		abcc();
+		if(k==0)
+		{
+			printf("There are no solutions for %d.\n",a);
+		}
+	}
+	return 0;
+}

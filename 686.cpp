@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h;
+    while(scanf("%d",&a)==1)
+    {
+        if(a==0)
+        {
+            break;
+        }
+        if(a==4)
+        {
+            printf("1\n");
+        }
+        else
+        {
+            for(b=3,c=a,g=0;b<a/2+1;b+=2)
+            {
+                for(d=3,e=0;d<(int)(sqrt(b))+1;d+=2)
+                {
+                    if(b%d==0)
+                    {
+                        e=1;
+                    }
+                }
+                if(e==0)
+                {
+                    for(f=a-b,d=3,e=0;d<(int)(sqrt(f))+1;d+=2)
+                    {
+                        if(f%d==0)
+                        {
+                            e=1;
+                        }
+                    }
+                    if(e==0)
+                    {
+                        g++;
+                    }
+                }
+            }
+            printf("%d\n",g);
+        }
+    }
+    return 0;
+}

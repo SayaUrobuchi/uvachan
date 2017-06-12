@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,j,k,l,len1,len2;
+	char lcs[81][81],s1[81],s2[81],ans[82][10],back[81][81],blank;
+	blank=0;
+	for(i=0;i<81;i++)
+	{
+		lcs[i][0]=i;
+		lcs[0][i]=i;
+		back[0][i]=2;
+		back[i][0]=3;
+	}
+	while(gets(s1))
+	{
+		gets(s2);
+		len1=strlen(s1)+1;
+		len2=strlen(s2)+1;
+		for(i=1;i<len1;i++)
+		{
+			for(j=1;j<len2;j++)
+			{
+				if(s1[i-1]==s2[j-1])
+				{
+					lcs[i][j]=lcs[i-1][j-1];
+					back[i][j]=0;
+				}
+				else
+				{
+					lcs[i][j]=lcs[i][j-1]+1;
+					back[i][j]=2;
+					if(lcs[i][j]>lcs[i-1][j]+1)
+					{
+						lcs[i][j]=lcs[i-1][j]+1;
+						back[i][j]=3;
+					}
+					if(lcs[i][j]>lcs[i-1][j-1]+1)
+					{
+						lcs[i][j]=lcs[i-1][j-1]+1;
+						back[i][j]=1;
+					}
+				}
+			}
+		}
+		for(i=len1-1,j=len2-1,k=lcs[i][j];i||j;)
+		{
+			if(back[i][j])
+			{
+				if(back[i][j]==1)
+				{
+					strcpy(ans[k],"Replace");
+					ans[k][8]=s2[j-1];
+					ans[k--][9]=i;
+					i--;
+					j--;
+				}
+				else if(back[i][j]==2)
+				{
+					strcpy(ans[k],"Insert");
+					ans[k][8]=s2[j-1];
+					ans[k--][9]=i+1;
+					j--;
+				}
+				else
+				{
+					strcpy(ans[k],"Delete");
+					ans[k--][9]=i;
+					i--;
+				}
+			}
+			else
+			{
+				i--;
+				j--;
+			}
+		}
+		if(blank)
+		{
+			printf("\n");
+		}
+		blank=1;
+		i=lcs[len1-1][len2-1];
+		printf("%d\n",i);
+		for(i++,k++,l=0;k<i;k++)
+		{
+			printf("%d %s %d",k,ans[k],ans[k][9]+l);
+			if(ans[k][0]=='D')
+			{
+				printf("\n");
+				l--;
+			}
+			else
+			{
+				if(ans[k][0]=='I')
+				{
+					l++;
+				}
+				printf(",%c\n",ans[k][8]);
+			}
+		}
+	}
+	return 0;
+}

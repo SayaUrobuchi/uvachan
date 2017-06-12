@@ -1,0 +1,75 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j;
+	bool k[101][101];
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		scanf("%d%d",&a,&g);
+		a++;
+		for(b=1;b<a;b++)
+		{
+			for(c=1;c<a;c++)
+			{
+				k[b][c]=0;
+			}
+		}
+		for(g;g>0;g--)
+		{
+			scanf("%d%d%d%d",&c,&d,&e,&f);
+			e++;
+			f++;
+			for(c;c<e;c++)
+			{
+				for(i=d;i<f;i++)
+				{
+					k[c][i]=1;
+				}
+			}
+		}
+		for(b=1,i=0;b<a;b++)
+		{
+			for(c=1;c<a;c++)
+			{
+				if(!k[b][c])
+				{
+					if((a-c)*(a-b)<i)
+					{
+						break;
+					}
+					for(d=c,g=101;d<a;d++)
+					{
+						if(k[b][d])
+						{
+							break;
+						}
+						for(e=b+1,f=1;e<a;e++)
+						{
+							if(k[e][d])
+							{
+								break;
+							}
+							f++;
+						}
+						if(f>g)
+						{
+							f=g;
+						}
+						else
+						{
+							g=f;
+						}
+						f*=d-c+1;
+						if(f>i)
+						{
+							i=f;
+						}
+					}
+				}
+			}
+		}
+		printf("%d\n",i);
+	}
+	return 0;
+}

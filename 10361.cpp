@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char p[105],q[105],r[105],s[105],x,y[105];
+	int a,b,c,d,e,f,g,h,i,j,k;
+	scanf("%d%c",&h,&x);
+	for(h;h>0;h--)
+	{
+		gets(y);
+		i=strlen(y);
+		for(j=0,k=0;j<i;j++)
+		{
+			if(y[j]=='<')
+			{
+				if(k==0)
+				{
+					for(j+=1,g=0;j<i;j++)
+					{
+						if(y[j]=='>')
+						{
+							k++;
+							break;
+						}
+						p[g]=y[j];
+						printf("%c",y[j]);
+						g++;
+					}
+					p[g]='\0';
+					g=0;
+				}
+				else
+				{
+					q[g]='\0';
+					for(j+=1,g=0;j<i;j++)
+					{
+						if(y[j]=='>')
+						{
+							k++;
+							break;
+						}
+						r[g]=y[j];
+						printf("%c",y[j]);
+						g++;
+					}
+					r[g]='\0';
+					g=0;
+				}
+			}
+			else if(k==1)
+			{
+				q[g]=y[j];
+				printf("%c",y[j]);
+				g++;
+			}
+			else if(k==2)
+			{
+				s[g]=y[j];
+				printf("%c",y[j]);
+				g++;
+			}
+			else
+			{
+				printf("%c",y[j]);
+			}
+		}
+		printf("\n");
+		s[g]='\0';
+		gets(y);
+		for(j=0;j<i;j++)
+		{
+			if(y[j]=='.')
+			{
+				printf("%s%s%s%s\n",r,q,p,s);
+				break;
+			}
+			else
+			{
+				printf("%c",y[j]);
+			}
+		}
+	}
+	return 0;
+}

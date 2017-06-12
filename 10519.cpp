@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[101],l[101],n[205];
+	char m[102];
+	while(gets(m))
+	{
+		if(m[0]==48)
+		{
+			printf("1\n");
+			continue;
+		}
+		a=strlen(m);
+		for(b=a-1,c=0;b>-1;b--,c++)
+		{
+			k[c]=m[b]-48;
+			l[c]=k[c];
+		}
+		for(b=0;b<205;b++)
+		{
+			n[b]=0;
+		}
+		l[0]--;
+		e=a;
+		if(l[0]<0)
+		{
+			e=0;
+			while(l[e]<0)
+			{
+				l[e]+=10;
+				l[++e]--;
+			}
+		}
+		for(b=0;b<a;b++)
+		{
+			for(c=0,d=b;c<e;c++,d++)
+			{
+				n[d]+=k[b]*l[c];
+			}
+		}
+		n[0]+=2;
+		n[d]=0;
+		for(b=0;b<d;b++)
+		{
+			n[b+1]+=n[b]/10;
+			n[b]%=10;
+		}
+		while(n[b]>0)
+		{
+			n[b+1]=n[b]/10;
+			n[b++]%=10;
+		}
+		for(b--;b>-1;b--)
+		{
+			printf("%d",n[b]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

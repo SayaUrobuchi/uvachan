@@ -1,0 +1,150 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j;
+	char k[5][6],x,y[10],z[1025],s;
+	for(a=0;a<9;a++)
+	{
+		y[a]=32;
+	}
+	y[a]='\0';
+	h=0;
+	s=0;
+	while(gets(k[0]))
+	{
+		if(strcmp(k[0],"Z")==0)
+		{
+			break;
+		}
+		if(s)
+		{
+			printf("\n");
+		}
+		s=1;
+		for(a=1;a<5;a++)
+		{
+			gets(k[a]);
+		}
+		for(c=0;c<5;c++)
+		{
+			for(d=0;d<5;d++)
+			{
+				if(k[c][d]==32)
+				{
+					break;
+				}
+			}
+			if(d<5)
+			{
+				break;
+			}
+		}
+		printf("Puzzle #%d:\n",++h);
+		j=0;
+		while(scanf("%c",&x)==1)
+		{
+			if(x=='A')
+			{
+				if(c>0)
+				{
+					k[c][d]=k[c-1][d];
+					k[--c][d]=32;
+				}
+				else
+				{
+					printf("This puzzle has no final configuration.\n");
+					while(gets(z))
+					{
+						if(z[strlen(z)-1]==48)
+						{
+							break;
+						}
+					}
+					j++;
+					break;
+				}
+			}
+			else if(x=='B')
+			{
+				if(c<4)
+				{
+					k[c][d]=k[c+1][d];
+					k[++c][d]=32;
+				}
+				else
+				{
+					printf("This puzzle has no final configuration.\n");
+					while(gets(z))
+					{
+						if(z[strlen(z)-1]==48)
+						{
+							break;
+						}
+					}
+					j++;
+					break;
+				}
+			}
+			else if(x=='L')
+			{
+				if(d>0)
+				{
+					k[c][d]=k[c][d-1];
+					k[c][--d]=32;
+				}
+				else
+				{
+					printf("This puzzle has no final configuration.\n");
+					while(gets(z))
+					{
+						if(z[strlen(z)-1]==48)
+						{
+							break;
+						}
+					}
+					j++;
+					break;
+				}
+			}
+			else if(x=='R')
+			{
+				if(d<4)
+				{
+					k[c][d]=k[c][d+1];
+					k[c][++d]=32;
+				}
+				else
+				{
+					printf("This puzzle has no final configuration.\n");
+					while(gets(z))
+					{
+						if(z[strlen(z)-1]==48)
+						{
+							break;
+						}
+					}
+					j++;
+					break;
+				}
+			}
+			else if(x==48)
+			{
+				scanf("%c",&x);
+				break;
+			}
+		}
+		if(j==0)
+		{
+			for(a=0;a<5;a++)
+			{
+				for(b=0,c=0;c<5;b+=2,c++)
+				{
+					y[b]=k[a][c];
+				}
+				printf("%s\n",y);
+			}
+		}
+	}
+	return 0;
+}

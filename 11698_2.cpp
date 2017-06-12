@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+int ln, sn;
+long long c[105][105], dp[105][2005], f[105];
+long long list[2005], stk[2005];
+
+int gcd(int p, int q)
+{
+	return p%q?gcd(q, p%q):q;
+}
+
+int find(int t)
+{
+	int p, q, c;
+	for(p=0, q=ln-1; p<=q; )
+	{
+		c = ((p+q)>>1);
+		if(list[c] == t)
+		{
+			return c;
+		}
+		else if(list[c] > t)
+		{
+			q = c-1;
+		}
+		else
+		{
+			p = c+1;
+		}
+	}
+	return -1;
+}
+
+int main()
+{
+	int count, n, m, i, j, k, l, p, q, r, sq;
+	long long s, t;
+	c[0][0] = 1;
+	f[0] = 1;
+	for(i=1; i<=100; i++)
+	{
+		c[i][0] = 1;
+		f[i] = (f[i-1] * i) % 2147483647;
+		for(j=1; j<=100; j++)
+		{
+			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % 2147483647;
+		}
+	}
+	scanf("%d", &count);
+	while(count--)
+	{
+		scanf("%d%d", &n, &m);
+		for(i=2, r=m; i<=100; i++)
+		{
+			if(r % i == 0)
+			{
+				while((r/=i) % i == 0);
+			}
+		}
+		if(r != 1)
+		{
+			printf("0\n");
+			continue;
+		}
+		for(i=1, ln=0, sn=0, sq=(int)sqrt((double)m); i<=sq; i++)
+		{
+			if(m % i == 0)
+			{
+				list[ln++] = i;
+				if(m != i*i)
+				{
+					stk[sn++] = m/i;
+				}
+			}
+		}
+		for(i=sn-1; i>=0; i--)
+		{
+			list[ln++] = stk[i];
+		}
+		memset(dp, 0, sizeof(dp));
+		dp[0][0] = 1;
+		for(i=1; i<=n; i++)
+		{
+			for(k=ln-1; k>=0; k--)
+			{
+				if(m % (t=(list[k]*i/gcd(list[k], i))))
+				{
+					continue;
+				}
+				r = find((int)t);
+				for(j=n-i; j>=0; j--)
+				{
+					if(dp[j][k] == 0)
+					{
+						continue;
+					}
+					for(p=1, q=i, s=1; j+q<=n; p++, q+=i)
+					{
+						s = (s*c[q-1][i-1]%2147483647)*f[i-1]%2147483647;
+						dp[j+q][r] += (dp[j][k]*c[n-j][q]%2147483647)*s%2147483647;
+						dp[j+q][r] %= 2147483647;
+					}
+				}
+			}
+		}
+		printf("%lld\n", dp[n][ln-1]);
+	}
+	return 0;
+}

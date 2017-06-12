@@ -1,0 +1,74 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j[101],k[101][101],p,q;
+	bool l[101];
+	h=0;
+	while(scanf("%d%d",&a,&g)==2)
+	{
+		if(!a&&!g)
+		{
+			break;
+		}
+		for(b=0;b<a;b++)
+		{
+			j[b]=0;
+			for(c=0;c<a;c++)
+			{
+				k[b][c]=0;
+			}
+			l[b]=1;
+		}
+		for(g;g;g--)
+		{
+			scanf("%d%d%d",&b,&c,&d);
+			k[--b][--c]=d;
+			k[c][b]=d;
+		}
+		scanf("%d%d%d",&b,&c,&g);
+		b--;
+		c--;
+		l[b]=0;
+		e=b;
+		for(d=1;d<a;d++)
+		{
+			for(f=0;f<a;f++)
+			{
+				if(k[e][f]&&l[f])
+				{
+					p=k[e][f];
+					if(p>j[e]&&j[e])
+					{
+						p=j[e];
+					}
+					if(p>j[f])
+					{
+						j[f]=p;
+					}
+				}
+			}
+			for(e=0,p=0;e<a;e++)
+			{
+				if(l[e])
+				{
+					if(j[e]&&j[e]>p)
+					{
+						p=j[e];
+						q=e;
+					}
+				}
+			}
+			e=q;
+			l[e]=0;
+		}
+		j[c]--;
+		b=g/j[c];
+		if(g%j[c])
+		{
+			b++;
+		}
+		printf("Scenario #%d\n",++h);
+		printf("Minimum Number of Trips = %d\n\n",b);
+	}
+	return 0;
+}

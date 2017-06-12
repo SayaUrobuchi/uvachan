@@ -1,0 +1,55 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[26][2];
+	k[0][0]=2;
+	h=1;
+	k[25][0]=101;
+	for(i=3;i<=100;i+=2)
+	{
+		for(j=0,f=0;j<h;j++)
+		{
+			if(i%k[j][0]==0)
+			{
+				f=1;
+				break;
+			}
+		}
+		if(f!=1)
+		{
+			k[h][0]=i;
+			h++;
+		}
+	}
+    while(scanf("%d",&a)==1)
+    {
+        if(a==0)
+        {
+            break;
+        }
+        for(i=0;k[i][0]<=a;i++)
+        {
+            k[i][1]=0;
+            for(b=a;b>0;b)
+            {
+                b/=k[i][0];
+                if(b==0)
+                {
+                    break;
+                }
+                k[i][1]+=b;
+            }
+        }
+        printf("%3d! =",a);
+        for(i=0,j=0;k[i][0]<=a;i++)
+        {
+            j++;
+            if(j==16)
+            {
+                printf("\n      ");
+            }
+            printf("%3d",k[i][1]);
+        }
+        printf("\n");
+    }
+}

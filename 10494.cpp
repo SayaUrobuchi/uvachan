@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h;
+	long long i;
+	//int i;
+	char k[1010],x,y[1010];
+	a=0;
+	while(scanf("%c",&k[a])==1)
+	{
+		if(k[a]>57||k[a]<48)
+		{
+			x=k[a];
+			if(x!='/'&&x!='\%')
+			{
+				while(scanf("%c",&x)==1)
+				{
+					if(x=='/'||x=='\%')
+					{
+						break;
+					}
+				}
+			}
+			scanf("%d",&b);
+			i=0;
+			if(x=='/')
+			{
+				for(c=0;c<a;c++)
+				{
+					i*=10;
+					i+=k[c]-48;
+					if(i>=b)
+					{
+						c++;
+						break;
+					}
+				}
+				y[0]=i/b+48;
+				d=1;
+				i%=b;
+				for(c;c<a;c++)
+				{
+					i*=10;
+					i+=k[c]-48;
+					y[d]=i/b+48;
+					d++;
+					i%=b;
+				}
+				y[d]='\0';
+				printf("%s\n",y);
+			}
+			else
+			{
+				for(c=0;c<a;c++)
+				{
+					i*=10;
+					i+=k[c]-48;
+					if(i>=b)
+					{
+						i%=b;
+					}
+				}
+				printf("%lld\n",i);
+			}
+			a=0;
+			scanf("%c",&x);
+		}
+		else
+		{
+			a++;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,101 @@
+#include<stdio.h>
+int main()
+{
+	char x;
+	int a,b,c,d,e,f,g,h,i,j[31],k[31],q[1000];
+	a=1;
+	while(scanf("%d%c",&k[a],&x)==2)
+	{
+		if(x==10)
+		{
+			for(c=1;c<=a;c++)
+			{
+				j[c]=k[c];
+				if(c!=1)
+				{
+					printf(" ");
+				}
+				printf("%d",k[c]);
+			}
+			printf("\n");
+			for(c=1;c<a;c++)
+			{
+				for(d=1,f=0;d<a;d++)
+				{
+					if(j[d]>j[d+1])
+					{
+						f++;
+						e=j[d];
+						j[d]=j[d+1];
+						j[d+1]=e;
+					}
+				}
+				if(f==0)
+				{
+					break;
+				}
+			}
+			for(d=a,g=0;;)
+			{
+				for(c=d;c>=1;c--)
+				{
+					if(k[c]==j[d])
+					{
+						d--;
+					}
+					else
+					{
+						break;
+					}
+				}
+				for(c=d;c>=1;c--)
+				{
+					if(k[c]==j[d])
+					{
+						break;
+					}
+				}
+				if(d==0)
+				{
+					if(g==1)
+					{
+						printf(" ");
+					}
+					g=1;
+					printf("0\n");
+					break;
+				}
+				if(c!=1)
+				{
+					if(g==1)
+					{
+						printf(" ");
+					}
+					g=1;
+					printf("%d",a+1-c);
+					for(h=c,e=1;h>e;h--,e++)
+					{
+						f=k[h];
+						k[h]=k[e];
+						k[e]=f;
+					}
+				}
+					if(g==1)
+					{
+						printf(" ");
+					}
+					g=1;
+					printf("%d",a+1-d);
+					for(c=d,e=1;c>e;c--,e++)
+					{
+						f=k[c];
+						k[c]=k[e];
+						k[e]=f;
+					}
+			}
+			a=0;
+		}
+		a++;
+	}
+	return 0;
+}

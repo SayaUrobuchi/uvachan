@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+int a,b,c,d,e,f,g,h,i,j,k[1001],l[440798];
+int abcc(const void *p,const void *q)
+{
+	return *(int*)p-*(int*)q;
+}
+int main()
+{
+	for(a=1;a<1001;a++)
+	{
+		k[a]=a*a*a;
+	}
+	for(a=1,c=0;a<1000;a++)
+	{
+		for(b=a+1;b<1001;b++)
+		{
+			if((double)k[a]+k[b]<1000100000)
+			{
+				l[c++]=k[a]+k[b];
+			}
+		}
+	}
+	qsort(l,c,sizeof(int),abcc);
+	for(a=1,b=-1,d=-1;a<c;a++)
+	{
+		if(l[a]==l[a-1])
+		{
+			if(l[a]!=b)
+			{
+				b=l[a];
+				l[++d]=b;
+			}
+		}
+	}
+	l[++d]=1000100001;
+	while(scanf("%d%d",&a,&b)==2)
+	{
+		c=0;
+		e=d;
+		while(1)
+		{
+			i=c+e;
+			i/=2;
+			if(a==l[i])
+			{
+				break;
+			}
+			else if(a>l[i])
+			{
+				c=i+1;
+				if(c>e)
+				{
+					i++;
+					break;
+				}
+			}
+			else
+			{
+				e=i-1;
+				if(c>e)
+				{
+					break;
+				}
+			}
+		}
+		for(b+=a+1,j=i;l[i]<b;i++)
+		{
+			printf("%d\n",l[i]);
+		}
+		if(i==j)
+		{
+			printf("None\n");
+		}
+	}
+	return 0;
+}

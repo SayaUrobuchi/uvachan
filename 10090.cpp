@@ -1,0 +1,85 @@
+#include<stdio.h>
+int main()
+{
+    double a,b,c,d,i,j;
+    int e,f,g,h,k,m,n,x,y;
+    while(scanf("%d",&k)==1)
+    {
+        if(k==0)
+        {
+            break;
+        }
+        scanf("%lf %lf %lf %lf",&a,&b,&c,&d);
+        i=a/b;
+        j=c/d;
+        x=(int)(b);
+        y=(int)(d);
+        for(e=0,m=x,n=y;e<2000000;e++)
+        {
+            if(m>n)
+            {
+                if(m%n==0)
+                {
+                    f=n;
+                    break;
+                }
+                else
+                {
+                    m%=n;
+                }
+            }
+            else
+            {
+                if(n%m==0)
+                {
+                    f=m;
+                    break;
+                }
+                else
+                {
+                    n%=m;
+                }
+            }
+        }
+        if(k%f!=0)
+        {
+            printf("failed\n");
+        }
+        else
+        {
+            if(i>=j)
+            {
+                for(e=k,g=0,f=0;e>=0;e-=x,g++)
+                {
+                    if(e%y==0)
+                    {
+                        f=1;
+                        printf("%d %d\n",g,e/y);
+                        break;
+                    }
+                }
+                if(f!=1)
+                {
+                    printf("failed\n");
+                }
+            }
+            else
+            {
+                for(e=k,g=0,f=0;e>=0;e-=y,g++)
+                {
+                    if(e%x==0)
+                    {
+                        f=1;
+                        printf("%d %d\n",e/x,g);
+                        break;
+                    }
+                }
+                if(f!=1)
+                {
+                    printf("failed\n");
+                }
+            }
+        }
+    }
+    return 0;
+}

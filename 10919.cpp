@@ -1,0 +1,50 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[100];
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		scanf("%d",&b);
+		for(c=0;c<a;c++)
+		{
+			scanf("%d",&k[c]);
+		}
+		for(e=0,g=0;g<b;g++)
+		{
+			scanf("%d %d",&h,&i);
+			for(c=0,f=0;c<h;c++)
+			{
+				scanf("%d",&j);
+				if(f==i||e==1)
+				{
+					continue;
+				}
+				for(d=0;d<a;d++)
+				{
+					if(j==k[d])
+					{
+						f++;
+						break;
+					}
+				}
+			}
+			if(f<i)
+			{
+				e=1;
+			}
+		}
+		if(e==1)
+		{
+			printf("no\n");
+		}
+		else
+		{
+			printf("yes\n");
+		}
+	}
+	return 0;
+}

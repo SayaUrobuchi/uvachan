@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,k[210],z[210][210];
+	char i[210],j[210],x,y[210];
+	for(a=0;a<209;a++)
+	{
+		y[a]=32;
+	}
+	y[a]='\0';
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		for(b=0;b<a;b++)
+		{
+			scanf("%d",&z[1][b]);
+			z[1][b]--;
+		}
+		for(b=0;b<a;b++)
+		{
+			for(c=2,d=1;;c++,d++)
+			{
+				z[c][b]=z[1][z[d][b]];
+				if(z[c][b]==z[1][b])
+				{
+					z[0][b]=z[d][b];
+					k[b]=c-1;
+					break;
+				}
+			}
+		}
+		while(scanf("%d%c",&h,&x)==2)
+		{
+			if(h==0)
+			{
+				break;
+			}
+			strcpy(i,y);
+			gets(i);
+			c=strlen(i);
+			i[c]=32;
+			for(b=0;b<a;b++)
+			{
+				j[z[h%k[b]][b]]=i[b];
+			}
+			j[b]='\0';
+			printf("%s\n",j);
+		}
+		printf("\n");
+	}
+	return 0;
+}

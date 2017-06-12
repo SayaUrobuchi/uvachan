@@ -1,0 +1,60 @@
+#include<stdio.h>
+int main()
+{
+    char a[10000];
+    int b[10],c=0,d,e,f;
+    b[0]=65;
+    b[1]=69;
+    b[2]=73;
+    b[3]=79;
+    b[4]=85;
+    b[5]=97;
+    b[6]=101;
+    b[7]=105;
+    b[8]=111;
+    b[9]=117;
+    while(scanf("%c",&a[c])==1)
+    {
+        if(a[c]>64&&a[c]<91)
+        {
+            c++;
+        }
+        else if(a[c]>96&&a[c]<123)
+        {
+            c++;
+        }
+        else
+        {
+            if(c>0)
+            {
+                for(f=0;f<10;f++)
+                {
+                    if(a[0]==b[f])
+                    {
+                        f=100;
+                        break;
+                    }
+                }
+                if(f==100)
+                {
+                    for(f=0;f<c;f++)
+                    {
+                        printf("%c",a[f]);
+                    }
+                    printf("ay");
+                }
+                else
+                {
+                    for(f=1;f<c;f++)
+                    {
+                        printf("%c",a[f]);
+                    }
+                    printf("%cay",a[d]);
+                }
+            }
+            printf("%c",a[c]);
+            c=0;
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,52 @@
+#include<stdio.h>
+int a,b,c,d,e,f,g,h,i,j,k[673366];
+int main()
+{
+	k[1]=1;
+	k[2]=3;
+	for(a=3,b=2;a<673366;a++)
+	{
+		k[a]=k[a-1]+b;
+		if(a==k[b])
+		{
+			b++;
+		}
+	}
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		b=1;
+		c=673365;
+		while(1)
+		{
+			d=b+c;
+			d/=2;
+			if(k[d]==a)
+			{
+				break;
+			}
+			else if(k[d]>a)
+			{
+				c=d-1;
+				if(b>c)
+				{
+					break;
+				}
+			}
+			else
+			{
+				b=d+1;
+				if(b>c)
+				{
+					d++;
+					break;
+				}
+			}
+		}
+		printf("%d\n",d);
+	}
+	return 0;
+}

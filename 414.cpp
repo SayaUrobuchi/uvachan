@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f[15],g,h,i,j;
+	char k[15][30],x;
+	while(scanf("%d%c",&a,&x)==2)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		if(a==1)
+		{
+			gets(k[0]);
+			printf("0\n");
+			continue;
+		}
+		memset(f,0,sizeof(int)*15);
+		for(b=0,i=25;b<a;b++)
+		{
+			gets(k[b]);
+			for(c=1;c<24;c++)
+			{
+				if(k[b][c]==32)
+				{
+					f[b]++;
+				}
+				else
+				{
+					if(f[b]>0)
+					{
+						break;
+					}
+				}
+			}
+			if(f[b]<i)
+			{
+				i=f[b];
+			}
+		}
+		for(b=0,j=0;b<a;b++)
+		{
+			j+=f[b]-i;
+		}
+		printf("%d\n",j);
+	}
+	return 0;
+}

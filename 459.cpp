@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g[26],h,i[26],j[26][26],k;
+	char w,x,y,z;
+	scanf("%d%c%c",&h,&x,&w);
+	a=26;
+	for(h;h>0;h--)
+	{
+		for(c=0;c<a;c++)
+		{
+			for(b=0;b<a;b++)
+			{
+				j[c][b]=0;
+			}
+		}
+		scanf("%c%c",&x,&w);
+		a=x-64;
+		for(c=0;c<a;c++)
+		{
+			i[c]=1;
+		}
+		while(scanf("%c",&y)==1)
+		{
+			if(y==10)
+			{
+				break;
+			}
+			scanf("%c%c",&z,&w);
+			y-=65;
+			z-=65;
+			j[z][y]=1;
+			j[y][z]=1;
+			i[z]=2;
+			i[y]=2;
+		}
+		for(b=0,c=0;b<a;b++)
+		{
+			if(i[b]==2)
+			{
+				c++;
+				i[b]=0;
+				d=0;
+				e=1;
+				g[0]=b;
+				while(d<e)
+				{
+					k=g[d];
+					for(f=0;f<a;f++)
+					{
+						if(j[k][f]==1)
+						{
+							if(i[f]==2)
+							{
+								i[f]=0;
+								g[e]=f;
+								e++;
+							}
+						}
+					}
+					d++;
+				}
+			}
+			else if(i[b]==1)
+			{
+				c++;
+			}
+		}
+		printf("%d\n",c);
+		if(h!=1)
+		{
+			printf("\n");
+		}
+	}
+	return 0;
+}

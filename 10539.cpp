@@ -1,0 +1,153 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int a,b,c,d,e,g,h,i,j,l[169];
+double f,k[80100],m,n,w,x;
+int abcc(const void *p,const void *q)
+{
+	if(*(double*)p<*(double*)q)
+	{
+		return -1;
+	}
+	return 1;
+}
+int main()
+{
+	l[0]=2;
+	l[1]=3;
+	for(a=5,b=2;a<1010;a+=2)
+	{
+		d=sqrt(a)+1;
+		for(c=0;l[c]<d;c++)
+		{
+			if(!(a%l[c]))
+			{
+				break;
+			}
+		}
+		if(l[c]>d-1)
+		{
+			l[b++]=a;
+		}
+	}
+	n=pow(10,6);
+	m=n*n;
+	for(a=0,e=0;a<b;a++)
+	{
+		for(c=l[a],f=(double)c*c;f<m;f*=c)
+		{
+			k[e++]=f;
+		}
+	}
+	for(a=1011,n++;a<n;a+=2)
+	{
+		d=sqrt(a)+1;
+		for(b=1;l[b]<d;b++)
+		{
+			if(!(a%l[b]))
+			{
+				break;
+			}
+		}
+		if(l[b]>d-1)
+		{
+			for(f=(double)a*a,d=0;f<m;f*=a)
+			{
+				k[e++]=f;
+			}
+		}
+	}
+	qsort(k,e,sizeof(double),abcc);
+	e--;
+	scanf("%d",&h);
+	for(h;h>0;h--)
+	{
+		scanf("%lf%lf",&w,&x);
+		i=0;
+		j=e;
+		while(1)
+		{
+			c=i+j;
+			c/=2;
+			if(k[c]==w)
+			{
+				break;
+			}
+			else if(k[c]>w)
+			{
+				j=c-1;
+				if(i>j)
+				{
+					break;
+				}
+			}
+			else
+			{
+				i=c+1;
+				if(i>j)
+				{
+					c++;
+					break;
+				}
+			}
+		}
+		i=0;
+		j=e;
+		while(1)
+		{
+			d=i+j;
+			d/=2;
+			if(k[d]==x)
+			{
+				break;
+			}
+			else if(k[d]>x)
+			{
+				j=d-1;
+				if(i>j)
+				{
+					d--;
+					break;
+				}
+			}
+			else
+			{
+				i=d+1;
+				if(i>j)
+				{
+					break;
+				}
+			}
+		}
+		c++;
+		d++;
+		//printf("%d %d\n",c,d);
+		if(w<k[0])
+		{
+			if(x<k[0])
+			{
+				printf("0\n");
+			}
+			else
+			{
+				printf("%d\n",d);
+			}
+		}
+		else if(c==d)
+		{
+			if(k[c-1]==w||k[d-1]==x)
+			{
+				printf("1\n");
+			}
+			else
+			{
+				printf("0\n");
+			}
+		}
+		else
+		{
+			printf("%d\n",d-c+1);
+		}
+	}
+	return 0;
+}

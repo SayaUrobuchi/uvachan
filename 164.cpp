@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int len1,len2,i,j,k,l;
+	char s1[21],s2[21],ans[21][4],lcs[21][21],back[21][21];
+	for(i=0;i<21;i++)
+	{
+		lcs[0][i]=i;
+		lcs[i][0]=i;
+		back[0][i]='I';
+		back[i][0]='D';
+		ans[i][2]=0;
+	}
+	while(scanf("%s",s1)==1)
+	{
+		if(!strcmp(s1,"#"))
+		{
+			break;
+		}
+		scanf("%s",s2);
+		len1=strlen(s1)+1;
+		len2=strlen(s2)+1;
+		for(i=1;i<len1;i++)
+		{
+			for(j=1;j<len2;j++)
+			{
+				if(s1[i-1]==s2[j-1])
+				{
+					lcs[i][j]=lcs[i-1][j-1];
+					back[i][j]=0;
+				}
+				else
+				{
+					lcs[i][j]=lcs[i][j-1]+1;
+					back[i][j]='I';
+					if(lcs[i][j]>lcs[i-1][j-1]+1)
+					{
+						lcs[i][j]=lcs[i-1][j-1]+1;
+						back[i][j]='C';
+					}
+					if(lcs[i][j]>lcs[i-1][j]+1)
+					{
+						lcs[i][j]=lcs[i-1][j]+1;
+						back[i][j]='D';
+					}
+				}
+			}
+		}
+		for(i=len1-1,j=len2-1,k=0;i||j;)
+		{
+			if(back[i][j])
+			{
+				ans[k][0]=back[i][j];
+				ans[k][3]=i;
+				if(back[i][j]=='I')
+				{
+					ans[k][1]=s2[j-1];
+					ans[k++][3]++;
+					j--;
+				}
+				else if(back[i][j]=='C')
+				{
+					ans[k++][1]=s2[j-1];
+					i--;
+					j--;
+				}
+				else
+				{
+					ans[k++][1]=s1[i-1];
+					i--;
+				}
+			}
+			else
+			{
+				i--;
+				j--;
+			}
+		}
+		for(k--,l=0;k>-1;k--)
+		{
+			printf("%s%02d",ans[k],ans[k][3]+l);
+			if(ans[k][0]=='I')
+			{
+				l++;
+			}
+			else if(ans[k][0]=='D')
+			{
+				l--;
+			}
+		}
+		printf("E\n");
+	}
+	return 0;
+}

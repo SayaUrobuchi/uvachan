@@ -1,0 +1,112 @@
+#include<stdio.h>
+int main()
+{
+    char b;
+    int a,c,d[2],e,f,g,h[13],i,j,k[3];
+    while(scanf("%d%c",&a,&b)==2)
+    {
+        d[0]=0;
+        d[1]=0;
+        k[0]=0;
+        k[1]=0;
+        k[2]=0;
+        for(c=0,f=0;a>0;a--)
+        {
+            scanf("%c",&b);
+            if(b!=10)
+            {
+                a++;
+                if(b>47&&b<58)
+                {
+                    b-=48;
+                    k[f]=b;
+                    f++;
+                }
+                else if(b==32)
+                {
+                    scanf("%c",&b);
+                    if(b=='+')
+                    {
+                        g=1;
+                    }
+                    else
+                    {
+                        g=-1;
+                    }
+                    for(j=0;j<f;j++)
+                    {
+                        for(i=j;i<f-1;i++)
+                        {
+                            k[j]*=16;
+                        }
+                    }
+                    d[0]=k[0]+k[1]+k[2];
+                    c++;
+                    k[0]=0;
+                    k[1]=0;
+                    k[2]=0;
+                    f=0;
+                    scanf("%c",&b);
+                }
+                else
+                {
+                    b-=55;
+                    k[f]=b;
+                    f++;
+                }
+            }
+            else
+            {
+                for(j=0;j<f;j++)
+                {
+                    for(i=j;i<f-1;i++)
+                    {
+                        k[j]*=16;
+                    }
+                }
+                d[1]=k[0]+k[1]+k[2];
+                k[0]=0;
+                k[1]=0;
+                k[2]=0;
+                for(f=0;f<2;f++)
+                {
+                    e=d[f];
+                    for(c=0;e>0;c)
+                    {
+                        h[c]=e%2;
+                        e/=2;
+                        c++;
+                        if(e==0)
+                        {
+                            break;
+                        }
+                    }
+                    for(c;c<13;c++)
+                    {
+                        h[c]=0;
+                    }
+                    for(c;c>0;c--)
+                    {
+                        printf("%d",h[c-1]);
+                    }
+                    if(f==0)
+                    {
+                        if(g>0)
+                        {
+                            printf(" + ");
+                        }
+                        else
+                        {
+                            printf(" - ");
+                        }
+                    }
+                }
+                printf(" = %d\n",d[0]+d[1]*g);
+                d[0]=0;
+                d[1]=0;
+                f=0;
+            }
+        }
+    }
+    return 0;
+}

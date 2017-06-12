@@ -1,0 +1,44 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i[1001],j[10000],k;
+	i[1]=1;
+	j[0]=1;
+	for(b=1;b<2000;b++)
+	{
+		j[b]=0;
+	}
+	b=1;
+	for(a=2;a<1001;a++)
+	{
+		for(c=0;c<b;c++)
+		{
+			j[c]*=a;
+		}
+		for(c=0;c<b;c++)
+		{
+			j[c+1]+=j[c]/10;
+			j[c]%=10;
+		}
+		for(c;j[c]>9;c++)
+		{
+			j[c+1]+=j[c]/10;
+			j[c]%=10;
+		}
+		if(j[c]>0)
+		{
+			c++;
+		}
+		b=c;
+		for(c=0,k=0;c<b;c++)
+		{
+			k+=j[c];
+		}
+		i[a]=k;
+	}
+	while(scanf("%d",&a)==1)
+	{
+		printf("%d\n",i[a]);
+	}
+	return 0;
+}

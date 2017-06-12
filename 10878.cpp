@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char a[11];
+    int b;
+    gets(a);
+    while(gets(a))
+    {
+        if(strcmp(a,"___________")==0)
+        {
+            break;
+        }
+        b=0;
+        if(a[1]=='o')
+        {
+            b+=128;
+        }
+        if(a[2]=='o')
+        {
+            b+=64;
+        }
+        if(a[3]=='o')
+        {
+            b+=32;
+        }
+        if(a[4]=='o')
+        {
+            b+=16;
+        }
+        if(a[5]=='o')
+        {
+            b+=8;
+        }
+        if(a[7]=='o')
+        {
+            b+=4;
+        }
+        if(a[8]=='o')
+        {
+            b+=2;
+        }
+        if(a[9]=='o')
+        {
+            b+=1;
+        }
+        printf("%c",b);
+    }
+    //while(1);
+    return 0;
+}

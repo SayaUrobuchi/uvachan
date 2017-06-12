@@ -1,0 +1,172 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int a,b,c,d,e,f,g,h,i,j,k[78498],l[55],m[6];
+char n[1000001];
+int abcc(const void *p,const void *q)
+{
+	return *(int*)p-*(int*)q;
+}
+int main()
+{
+	for(a=5;a<1000001;a+=2)
+	{
+		n[a]=0;
+	}
+	k[0]=2;
+	n[2]=1;
+	k[1]=3;
+	n[3]=1;
+	for(a=5,d=2;a<1000000;a+=2)
+	{
+		b=sqrt(a)+1;
+		for(c=1;k[c]<b;c++)
+		{
+			if(!(a%k[c]))
+			{
+				break;
+			}
+		}
+		if(k[c]>b-1)
+		{
+			k[d++]=a;
+			n[a]=1;
+		}
+	}
+	for(a=0,b=0,e=10,f=1;a<78498;a++)
+	{
+		if(k[a]>e)
+		{
+			e*=10;
+			f*=10;
+		}
+		if(!n[k[a]])
+		{
+			continue;
+		}
+		for(c=k[a],g=1,h=1,m[0]=c;;)
+		{
+			d=c%10;
+			c/=10;
+			c+=d*f;
+			if(c==k[a])
+			{
+				break;
+			}
+			m[h++]=c;
+			if(!n[c])
+			{
+				g=0;
+			}
+		}
+		if(g)
+		{
+			for(i=0;i<h;i++)
+			{
+				l[b++]=m[i];
+				n[m[i]]=0;
+			}
+		}
+		else
+		{
+			for(i=0;i<h;i++)
+			{
+				n[m[i]]=0;
+			}
+		}
+	}
+	qsort(l,b,sizeof(int),abcc);
+	g=b-1;
+	while(scanf("%d",&a)==1)
+	{
+		if(a==-1)
+		{
+			break;
+		}
+		scanf("%d",&b);
+		c=0;
+		d=g;
+		while(1)
+		{
+			e=c+d;
+			e/=2;
+			if(l[e]==a)
+			{
+				e--;
+				break;
+			}
+			else if(l[e]>a)
+			{
+				d=e-1;
+				if(c>d)
+				{
+					e--;
+					break;
+				}
+			}
+			else
+			{
+				c=e+1;
+				if(c>d)
+				{
+					break;
+				}
+			}
+		}
+		c=0;
+		d=g;
+		while(1)
+		{
+			f=c+d;
+			f/=2;
+			if(l[f]==b)
+			{
+				break;
+			}
+			else if(l[f]>b)
+			{
+				d=f-1;
+				if(c>d)
+				{
+					f--;
+					break;
+				}
+			}
+			else
+			{
+				c=f+1;
+				if(c>d)
+				{
+					break;
+				}
+			}
+		}
+		if(e==f)
+		{
+			if(e==-1)
+			{
+				printf("No Circular Primes.\n");
+			}
+			else if(l[e]==a)
+			{
+				printf("1 Circular Prime.\n");
+			}
+			else
+			{
+				printf("No Circular Primes.\n");
+			}
+		}
+		else
+		{
+			if(f-e==1)
+			{
+				printf("1 Circular Prime.\n");
+			}
+			else
+			{
+				printf("%d Circular Primes.\n",f-e);
+			}
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,64 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c[100][100],d=0,e,f,g,h;
+    while(scanf("%d %d",&a,&b)==2)
+    {
+        if(a==0&&b==0)
+        {
+            break;
+        }
+        scanf("%c",&e);
+        for(e=0;e<a;e++)
+        {
+            for(f=0;f<b;f++)
+            {
+                c[e][f]=0;
+            }
+        }
+        for(e=0;e<a;e++)
+        {
+            for(f=0;f<b;f++)
+            {
+                scanf("%c",&g);
+                if(g=='*')
+                {
+                    c[e][f]=-10;
+                    for(g=-1;g<2;g++)
+                    {
+                        for(h=-1;h<2;h++)
+                        {
+                            if(e+g<a&&e+g>=0&&f+h<b&&f+h>=0)
+                            {
+                                c[e+g][f+h]++;
+                            }
+                        }
+                    }
+                }
+            }
+            scanf("%c",&g);
+        }
+        d++;
+        if(d>1)
+        {
+            printf("\n");
+        }
+        printf("Field #%d:\n",d);
+        for(e=0;e<a;e++)
+        {
+            for(f=0;f<b;f++)
+            {
+                if(c[e][f]<0)
+                {
+                    printf("*");
+                }
+                else
+                {
+                    printf("%d",c[e][f]);
+                }
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}

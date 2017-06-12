@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j[26];
+	char k[260],x;
+	while(scanf("%s",&k)==1)
+	{
+		a=strlen(k);
+		memset(j,0,sizeof(j));
+		for(b=0,x=0,i=0,d=0,e=0;b<a;b++)
+		{
+			c=k[b]-65;
+			if(j[c]>0)
+			{
+				if(b-j[c]==1)
+				{
+					if(d==3)
+					{
+						if(x==k[b-1])
+						{
+							if(c==e)
+							{
+								j[c]=b+1;
+								continue;
+							}
+						}
+					}
+					i++;
+					if(i==2)
+					{
+						break;
+					}
+					d=3;
+					x=k[b-1];
+					e=c;
+				}
+				else if(b-j[c]==2)
+				{
+					if(k[b-1]==k[b-2])
+					{
+						if(d==4)
+						{
+							if(x==k[b-1])
+							{
+								if(c==e)
+								{
+									j[c]=b+1;
+									continue;
+								}
+							}
+						}
+						i++;
+						if(i==2)
+						{
+							break;
+						}
+						d=4;
+						x=k[b-1];
+						e=c;
+					}
+				}
+				else if(b-j[c]==0)
+				{
+					if(k[b]==k[b-2])
+					{
+						if(d==3)
+						{
+							if(x==k[b-1])
+							{
+								if(c==e)
+								{
+									j[c]=b+1;
+									continue;
+								}
+							}
+						}
+						i++;
+						if(i==2)
+						{
+							break;
+						}
+						d=3;
+						x=k[b-1];
+						e=c;
+					}
+				}
+			}
+			j[c]=b+1;
+		}
+		if(i==2)
+		{
+			printf("%s\n",k);
+			i=0;
+		}
+	}
+	return 0;
+}
