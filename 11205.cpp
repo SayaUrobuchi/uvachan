@@ -2,7 +2,7 @@
 #include <string.h>
 
 int ary[100][15], dp[16], ans, n, m;
-char check[15], temp[32768], list[15];
+char check[15], temp[65536], list[15];
 
 char comp(int length)
 {
