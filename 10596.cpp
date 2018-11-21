@@ -9,8 +9,8 @@ int map[205][205];
 void dfs(int now)
 {
 	int i;
-	f += deg[now] % 2;
-	if(f)
+	f += deg[now] & 1;
+	if(f > 2)
 	{
 		return;
 	}
@@ -20,7 +20,7 @@ void dfs(int now)
 		{
 			used[i] = 1;
 			dfs(i);
-			if(f)
+			if(f > 2)
 			{
 				return;
 			}
@@ -30,11 +30,12 @@ void dfs(int now)
 
 int main()
 {
-	int m, i, p, q;
+	int m, i, p, q, r, s;
 	while(scanf("%d%d", &n, &m) == 2)
 	{
 		memset(deg, 0, sizeof(deg));
 		memset(map, 0, sizeof(map));
+		s = m;
 		while(m--)
 		{
 			scanf("%d%d", &p, &q);
@@ -44,29 +45,35 @@ int main()
 		}
 		f = 0;
 		memset(used, 0, sizeof(used));
-		used[0] = 1;
-		dfs(0);
-		if(f)
+		r = 0;
+		for(i=0; i<n; i++)
 		{
-			printf("Not Possible\n");
-		}
-		else
-		{
-			for(i=0; i<n; i++)
+			if(deg[i])
 			{
-				if(!used[i])
+				if (r && !used[i])
 				{
 					break;
 				}
+				if (used[i])
+				{
+					continue;
+				}
+				used[i] = 1;
+				dfs(i);
+				if (f)
+				{
+					break;
+				}
+				r = 1;
 			}
-			if(i == n)
-			{
-				printf("Possible\n");
-			}
-			else
-			{
-				printf("Not Possible\n");
-			}
+		}
+		if(i == n && s)
+		{
+			printf("Possible\n");
+		}
+		else
+		{
+			printf("Not Possible\n");
 		}
 	}
 	return 0;
