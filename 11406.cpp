@@ -84,7 +84,7 @@ int main()
 					d = py[j];
 					e = px[k];
 					f = py[k];
-					if(!equal((a-c)/(a-e), (b-d)/(b-f)))
+					if(!equal((a-c)/(a-e), (b-d)/(b-f)
 					{
 						x = ((2*b-2*f)*(a*a+b*b-c*c-d*d)-(2*b-2*d)*(a*a+b*b-e*e-f*f)) / 
 							((2*b-2*f)*(2*a-2*c)-(2*a-2*e)*(2*b-2*d));

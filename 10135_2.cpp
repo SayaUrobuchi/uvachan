@@ -43,7 +43,7 @@ int main()
 	int count, n, m, i, j, k;
 	double len, ans;
 	o.x = o.y = 0;
-	freopen("1.txt", "w", stdout);
+	/*freopen("1.txt", "w", stdout);*/
 	scanf("%d", &count);
 	while(count--)
 	{

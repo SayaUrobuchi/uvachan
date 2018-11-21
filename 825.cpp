@@ -12,14 +12,17 @@ int main()
 		j[0][c]=0;
 	}
 	h=0;
-	gets(g);
+	fgets(g, 2000, stdin);
+	g[strlen(g)-1] = 0;
 	sscanf(g,"%d",&x);
 	a=0;
 	b=0;
 	for(x;x>0;x--)
 	{
-		gets(g);
-		gets(g);
+	fgets(g, 2000, stdin);
+	g[strlen(g)-1] = 0;
+	fgets(g, 2000, stdin);
+	g[strlen(g)-1] = 0;
 		for(c=1;c<=a;c++)
 				{
 					for(d=1;d<=b;d++)
@@ -30,7 +33,8 @@ int main()
 		sscanf(g,"%d %d",&a,&b);
 			for(c=1;c<=a;c++)
 			{
-				gets(g);
+	fgets(g, 2000, stdin);
+	g[strlen(g)-1] = 0;
 				pch=strtok(g," ");
 				pch=strtok(NULL," ");
 				while(pch!=NULL)
