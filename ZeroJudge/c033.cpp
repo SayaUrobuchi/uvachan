@@ -1,0 +1,101 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e[169],f,g,h,i,j,k;
+	while(scanf("%d %d",&d,&g)==2)
+	{
+	    b=d;
+    	for(a=0;a<169;a++)
+    	{
+    		e[a]=0;
+    	}
+    	e[0]=1;
+    	if(d>1)
+    	{
+    	    e[1]=2;
+	    }
+	    if(d>2)
+	    {
+    	    e[2]=3;
+	    }
+    	a=6;
+    	d=b;
+    	f=3;
+    	for(a;a<=d+1;a+=6)
+    	{
+    		a--;
+    		for(c=1;e[c]*e[c]<=a;c++)
+    		{
+    			if(e[c]==0)
+    			{
+    				break;
+    			}
+    			else
+    			{
+    			    b=a%e[c];
+    			    if(b==0)
+    				{
+    			    	break;
+    				}
+    			}
+    		}
+    		if(b!=0)
+    		{
+    			e[f]=a;
+    			f++;
+    		}
+    		a+=2;
+    		if(a<=d)
+    		{
+                for(c=1;e[c]*e[c]<=a;c++)
+        		{
+        			if(e[c]==0)
+        			{
+        				b=c;
+        				break;
+        			}
+        			else
+        			{
+        			    b=a%e[c];
+        			    if(b==0)
+        				{
+        			    	break;
+        				}
+        			}
+        		}
+        		if(b!=0)
+        		{
+        			e[f]=a;
+        			f++;
+        		}
+        		a--;
+    		}
+    	}
+    	for(c=1;c<169;c++)
+    	{
+    		if(e[c]==0)
+    		{
+    			break;
+    		}
+    	}
+    	printf("%d %d:",d,g);
+    	if(g*2-c%2>=c)
+    	{
+    	    for(j=0;j<c;j++)
+    	    {
+    	        printf(" %d",e[j]);
+    	    }
+    	}
+    	else
+    	{
+    	    i=c+1;
+        	i/=2;
+    	    for(j=i-g;j<i+g-c%2;j++)
+        	{
+        	    printf(" %d",e[j]);
+        	}
+    	}
+    	printf("\n\n");
+	}
+	return 0;
+}

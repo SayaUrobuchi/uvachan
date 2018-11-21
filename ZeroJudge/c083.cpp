@@ -1,0 +1,70 @@
+#include<stdio.h>
+int main()
+{
+    int a,b,c,d,e,f,g,h,i,j,k[1000];
+    while(scanf("%d %d",&a,&b)==2)
+    {
+        if(a==0&&b==0)
+        {
+            break;
+        }
+        for(i=1;i<=a;i++)
+        {
+            k[i]=i;
+        }
+        for(i=b,c=a;c>1;i+=b,c--)
+        {
+            if(i>c)
+            {
+                i%=c;
+                if(i==0)
+                {
+                    i=c;
+                }
+            }
+            k[i]=0;
+            for(f=b,j=i;f>0;j++,f--)
+            {
+                if(k[j]==0)
+                {
+                    f++;
+                }
+                //printf("%d\n",j);
+                if(j==c)
+                {
+                    j=0;
+                }
+            }
+            j--;
+            if(j==0)
+            {
+                j=c;
+            }
+            k[i]=k[j];
+            if(i>=j)
+            {
+                i--;
+            }
+            //printf("%d %d\n",i,j);
+            for(j;j<c;j++)
+            {
+                k[j]=k[j+1];
+            }
+            /*for(j=1;j<c;j++)
+            {
+                printf("%d\n",k[j]);
+            }
+            printf("\n");*/
+        }
+        if(k[1]==1)
+        {
+            printf("1\n");
+        }
+        else
+        {
+            k[1]=a+2-k[1];
+            printf("%d\n",k[1]);
+        }
+    }
+    return 0;
+}

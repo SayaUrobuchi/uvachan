@@ -1,0 +1,72 @@
+#include<stdio.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k[100],l[100];
+	while(scanf("%d",&a)==1)
+	{
+		if(a==0)
+		{
+			break;
+		}
+		for(b=0;b<a;b++)
+		{
+			k[b]=0;
+			l[b]=0;
+		}
+		for(b=0,e=0;b<a;b++)
+		{
+			for(c=0;c<a;c++)
+			{
+				scanf("%d",&d);
+				k[b]+=d;
+				l[c]+=d;
+			}
+			if(k[b]%2)
+			{
+				if(e)
+				{
+					e=2;
+				}
+				e=1;
+				f=b;
+			}
+		}
+		if(e==2)
+		{
+			printf("Corrupt\n");
+		}
+		else
+		{
+			for(b=0,c=0;b<a;b++)
+			{
+				if(l[b]%2)
+				{
+					if(c)
+					{
+						c++;
+						break;
+					}
+					c=1;
+					d=b;
+				}
+			}
+			if(!c&&!e)
+			{
+				printf("OK\n");
+			}
+			else if(c==2)
+			{
+				printf("Corrupt\n");
+			}
+			else if(e&&c)
+			{
+				printf("Change bit (%d,%d)\n",f+1,d+1);
+			}
+			else
+			{
+				printf("Corrupt\n");
+			}
+		}
+	}
+	return 0;
+}

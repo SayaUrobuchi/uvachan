@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char k[100],x,y;
+	int a,b,c,d,e,f,g[51][51],h,i,j;
+	scanf("%d %d",&a,&b);
+	while(scanf("%d %d%c%c",&c,&d,&y,&x)==4)
+	{
+		h=0;
+		scanf("%c",&y);
+		gets(k);
+		e=strlen(k);
+		if(x=='N')
+		{
+			i=0;
+		}
+		else if(x=='E')
+		{
+			i=1;
+		}
+		else if(x=='S')
+		{
+			i=2;
+		}
+		else
+		{
+			i=3;
+		}
+		for(f=0;f<e;f++)
+		{
+			if(k[f]=='L')
+			{
+				i+=3;
+			}
+			else if(k[f]=='R')
+			{
+				i++;
+			}
+			else
+			{
+				j=i%4;
+				if(j%2==0)
+				{
+					if(j==2)
+					{
+						if(d>0)
+						{
+							d--;
+						}
+						else
+						{
+							if(g[c][d]!=1)
+							{
+								g[c][d]=1;
+								h=1;
+								break;
+							}
+						}
+					}
+					else
+					{
+						if(d<b)
+						{
+							d++;
+						}
+						else
+						{
+							if(g[c][d]!=1)
+							{
+								g[c][d]=1;
+								h=1;
+								break;
+							}
+						}
+					}
+				}
+				else
+				{
+					if(j==1)
+					{
+						if(c<a)
+						{
+							c++;
+						}
+						else
+						{
+							if(g[c][d]!=1)
+							{
+								g[c][d]=1;
+								h=1;
+								break;
+							}
+						}
+					}
+					else
+					{
+						if(c>0)
+						{
+							c--;
+						}
+						else
+						{
+							if(g[c][d]!=1)
+							{
+								g[c][d]=1;
+								h=1;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+		printf("%d %d ",c,d);
+		j=i%4;
+		if(j==0)
+		{
+			printf("N");
+		}
+		else if(j==1)
+		{
+			printf("E");
+		}
+		else if(j==2)
+		{
+			printf("S");
+		}
+		else
+		{
+			printf("W");
+		}
+		if(h==1)
+		{
+			printf(" LOST");
+		}
+		printf("\n");
+	}
+	return 0;
+}

@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int a,b,c,d,e,f,g,h,i,j,k;
+	while(scanf("%d",&a) == 1)
+	{
+		if(a == 0)
+		{
+			break;
+		}
+		for(a+=1;;a++)
+		{
+			if(a<=2)
+			{
+				printf("%d\n",4);
+				break;
+			}
+			for(b=a,i=0;b>0;b/=10)
+			{
+				i+=b%10;
+			}
+			b=a;
+			j=0;
+			if(b%2==0)
+			{
+				while(1)
+				{
+					b/=2;
+					j+=2;
+					if(b%2==1)
+					{
+						break;
+					}
+				}
+			}
+			d=sqrt(a);
+			for(c=3;c<=d;c+=2)
+			{
+				if(b%c==0)
+				{
+					for(f=0,e=c;e>0;e/=10)
+					{
+						f+=e%10;
+					}
+					while(1)
+					{
+						b/=c;
+						j+=f;
+						if(b%c!=0)
+						{
+							break;
+						}
+					}
+					if(b==1)
+					{
+						break;
+					}
+					if(j>i)
+					{
+						break;
+					}
+				}
+			}
+			if(b>1)
+			{
+				if(b==a)
+				{
+					continue;
+				}
+				for(e=b;e>0;e/=10)
+				{
+					j+=e%10;
+				}
+			}
+			if(i==j)
+			{
+				printf("%d\n",a);
+				break;
+			}
+		}
+	}
+	return 0;
+}
