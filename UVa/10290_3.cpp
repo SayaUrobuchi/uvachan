@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-long long prime[1200000];
+long long prime[1900000];
 char tbl[4000000];
 
 int main()
@@ -28,11 +28,6 @@ int main()
 	}
 	while(scanf("%lld", &n) == 1)
 	{
-		if(n < 4)
-		{
-			printf("1\n");
-			continue;
-		}
 		for(t=n; !(t&1); t>>=1);
 		/*for(p=prime, ans=1; (*p)*(*p)<=n&&t>1; p++)*/
 		for(p=prime, ans=1, sq=sqrt(n)+1; *p<sq&&t>1; p++)
