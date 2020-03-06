@@ -9,6 +9,7 @@ int qx[M], qy[M], qs[M], qt[M], qn;
 int main()
 {
 	int count, n,m, i, j, k, qn, x, y, t, s, tx, ty, jx, jy;
+	freopen("d:/output.txt", "w", stdout);
 	scanf("%d", &count);
 	while (count--)
 	{

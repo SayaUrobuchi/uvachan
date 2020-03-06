@@ -38,18 +38,15 @@ int main()
 					{
 						if (cnt[k])
 						{
-							if (i == 8) printf("%c %d %d %d\n", k, cnt[k], sum, c[sum+cnt[k]][sum]);
 							res = (res * c[sum+cnt[k]][sum]) % M;
 							sum += cnt[k];
 						}
 					}
 					cnt[j]++;
 					ans = (ans+res) % M;
-					if (i == 8) printf(":::: %c :::: %d\n", j, ans); 
 				}
 			}
 			cnt[j]--;
-			//printf("%d(%c): %d\n", i, s[i], ans);
 		}
 		printf("%d\n", ans);
 	}
