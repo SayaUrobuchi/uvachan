@@ -1,18 +1,27 @@
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+using namespace std;
 
-char str[1000];
+//           0123456789012345678901234567890123456789
+string id = "__________ABCDEFGHJKLMNPQRSTUVXYWZIO";
+int tbl[128];
 
 int main()
 {
-	int i;
-	while(gets(str))
+	int i, j, ans;
+	string s;
+	for (i=0; i<id.size(); i++)
 	{
-		for(i=strlen(str)-1; i>-1; i--)
+		tbl[ id[i] ] = i;
+	}
+	while (cin >> s)
+	{
+		ans = tbl[s[0]]/10 + (tbl[s[0]]%10 * 9);
+		for (i=1, j=8; j>0; i++, j--)
 		{
-			printf("%c", str[i]);
+			ans += (s[i]-'0') * j;
 		}
-		printf("\n");
+		ans += s[i] - '0';
+		cout << (ans%10?"fake":"real") << "\n";
 	}
 	return 0;
 }
