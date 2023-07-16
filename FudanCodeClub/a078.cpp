@@ -21,19 +21,17 @@ int main()
 		sort(ary.begin(), ary.end());
 		priority_queue<int> pq;
 		long long sum = 0;
-		int ans = 0;
 		for (i=0; i<n; i++)
 		{
 			pq.emplace(ary[i].second);
 			sum += ary[i].second;
-			while (sum > ary[i].first)
+			if (sum > ary[i].first)
 			{
 				sum -= pq.top();
 				pq.pop();
 			}
-			ans = max(ans, (int)pq.size());
 		}
-		printf("%d\n", ans);
+		printf("%d\n", (int)pq.size());
 	}
 	return 0;
 }
